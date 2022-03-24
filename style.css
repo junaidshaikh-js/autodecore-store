@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap");
+
+/* variables */
+:root {
+  --primary-color: hsl(217, 87%, 55%);
+  --complementary-color: hsl(20, 97%, 55%);
+
+  --primary-font-family: "Montserrat", sans-serif;
+  --secondary-font-family: "Roboto", sans-serif;
+
+  --white-background: hsl(216, 22%, 95%);
+  --black-background: hsl(218, 41%, 15%);
+
+  --white: hsl(0, 0%, 100%);
+  --red: hsl(0, 83%, 48%);
+  --gray: hsl(0, 0%, 70%);
+  --light-gray: hsl(0, 0%, 90%);
+  --green: hsl(123, 43%, 39%);
+}
+
+/* css reset */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--white-background);
+  overflow-x: hidden;
+  font-family: var(--secondary-font-family);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* flex utility classes */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+/* width */
+.w-100 {
+  width: 100%;
+}
+
+/* border */
+.border-gray {
+  border: 1px solid var(--gray) !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--gray);
+}
+
+.border-bottom-dotted {
+  border-bottom: 1px dotted var(--gray);
+}
+
+/* text  */
+.txt-green {
+  color: var(--green);
+}
+
+.color-primary {
+  color: var(
+    --primary-color
+  ) !important; /* used to overrite component library styles */
+}
+
+.txt-left {
+  text-align: left;
+}
+
+/* backgrounds */
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.bg-complimentary {
+  background-color: var(--complementary-color);
+}
+
+.bg-black {
+  background-color: var(--black-background);
+}
+
+.bg-white {
+  background-color: var(--white);
+}
+
+/* other */
+.visually-hidden {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  left: 0;
+  top: -500px;
+}
