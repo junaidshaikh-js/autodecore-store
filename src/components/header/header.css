@@ -1,0 +1,80 @@
+.hy-logo {
+  display: inline-block;
+}
+
+.hy-navbar-links .login-btn,
+.signup-btn,
+.logout-btn {
+  display: none;
+}
+
+.hy-search-btn {
+  top: 24%;
+}
+
+.hy-hamburger-btn {
+  font-size: 1.2rem;
+}
+
+.btn.login-btn,
+.btn.signup-btn,
+.btn.logout-btn {
+  font-size: 1.2rem;
+  padding: 0.4rem 0.8rem;
+}
+
+i[title="search"] {
+  font-size: 20px;
+}
+
+.side-menu {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 100vh;
+  overflow: hidden;
+  transition: width 0.2s linear;
+}
+
+.side-menu div:first-child {
+  background: var(--primary-color);
+  height: 15%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.side-menu-close-btn {
+  position: absolute;
+  top: 12%;
+  right: 6%;
+  cursor: pointer;
+}
+
+.side-menu ul {
+  background: var(--white);
+  height: 100%;
+  width: 50%;
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
+.isOpen {
+  width: 100vw;
+  z-index: 1;
+}
+
+@media screen and (min-width: 769px) {
+  .hy-navbar-links .login-btn,
+  .signup-btn,
+  .logout-btn {
+    display: inline-block;
+  }
+
+  .hy-search-box {
+    left: 200px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
