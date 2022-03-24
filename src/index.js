@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { makeServer } from "./server";
+import { StateProvider } from "./context/";
 
 import App from "./App";
 
@@ -11,7 +12,9 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <StateProvider>
+        <App />
+      </StateProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
