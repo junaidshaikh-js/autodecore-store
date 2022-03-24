@@ -5,3 +5,4 @@ export * from "./cart";
 export * from "./wishlist";
 export * from "./authentication";
 export * from "./footer";
+export * from "./buttons";
