@@ -1,0 +1,44 @@
+.btn {
+  border-radius: 2px !important;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.btn:focus {
+  outline: 1px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.btn.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 0.6rem 1.2rem !important;
+  text-transform: none;
+  background-color: var(--white);
+  color: var(--primary-color) !important;
+}
+
+.btn-complementary {
+  background-color: var(--complementary-color);
+  color: var(--white) !important;
+  font-size: 1.2rem;
+}
+
+.btn-complementary-outline {
+  outline: 1px solid var(--complementary-color) !important;
+}
+
+.btn-complementary-outline:hover {
+  background-color: var(--complementary-color);
+  color: var(--white);
+}
+
+@media screen and (min-width: 769px) {
+  .btn {
+    font-size: 1rem !important;
+  }
+}
