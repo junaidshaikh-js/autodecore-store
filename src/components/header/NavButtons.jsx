@@ -19,13 +19,13 @@ export function NavButtons() {
           {location.pathname === "/login" ? (
             <Link to="/signup">
               <span className="signup-btn">
-                <BtnSecondary buttonText="signup" />
+                <BtnSecondary>signup</BtnSecondary>
               </span>
             </Link>
           ) : (
             <Link to="/login">
               <span className="login-btn">
-                <BtnSecondary buttonText="login" />
+                <BtnSecondary>login</BtnSecondary>
               </span>
             </Link>
           )}
