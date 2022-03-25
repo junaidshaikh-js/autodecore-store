@@ -11,6 +11,9 @@ export function SortByPrice({ dispatch }) {
               name="sort"
               value="low to high"
               className="mr-1"
+              onChange={(e) => {
+                dispatch({ type: "SORT_BY_PRICE", payload: "lowToHigh" });
+              }}
             />
             Price Low to High
           </label>
@@ -23,6 +26,9 @@ export function SortByPrice({ dispatch }) {
               name="sort"
               value="high to low"
               className="mr-1"
+              onChange={(e) => {
+                dispatch({ type: "SORT_BY_PRICE", payload: "highToLow" });
+              }}
             />
             Price High to Low
           </label>
