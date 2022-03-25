@@ -20,6 +20,12 @@ export function FilterByCustomerRating({ dispatch, filters }) {
                   name="customer-rating"
                   value={ratingFilter}
                   className="mr-1"
+                  onChange={() => {
+                    dispatch({
+                      type: "SORT_BY_RATING",
+                      payload: ratingFilters.length - index,
+                    });
+                  }}
                   checked={filters.rating === ratingFilters.length - index}
                 />
                 {ratingFilters.length - index}{" "}

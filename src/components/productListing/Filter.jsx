@@ -27,6 +27,10 @@ export function Filter() {
     setIsFilterOpen((f) => !f);
   }
 
+  function handleClearFilter(dispatch) {
+    dispatch({ type: "CLEAR_FILTERS" });
+  }
+
   return (
     <aside
       className={
@@ -45,13 +49,25 @@ export function Filter() {
               </button>
             )}
           </div>
-          {isFilterOpen && <button className="btn btn-link">Clear</button>}
+          {isFilterOpen && (
+            <button
+              className="btn btn-link"
+              onClick={() => handleClearFilter(dispatch)}
+            >
+              Clear
+            </button>
+          )}
         </div>
 
         <div className="desktop-filter">
           <span className="txt-rg txt-bold">Filters</span>
 
-          <button className="btn btn-link">{"Clear"}</button>
+          <button
+            className="btn btn-link"
+            onClick={() => handleClearFilter(dispatch)}
+          >
+            {"Clear"}
+          </button>
         </div>
       </div>
 
