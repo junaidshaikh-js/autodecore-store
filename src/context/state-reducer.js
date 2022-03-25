@@ -1,7 +1,7 @@
 export function stateReducer(state, { type, payload }) {
   switch (type) {
-    case "demo":
-      break;
+    case "SET_PRODUCTS":
+      return { ...state, products: payload };
     default:
       throw new Error("Unhandled action type");
   }

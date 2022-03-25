@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 
 import {
   Header,
@@ -11,9 +12,18 @@ import {
   Footer,
 } from "./components";
 
+import { getProducts } from "./utils/server-requests";
+import { useStateContext } from "./context/state-context";
+
 import "./style.css";
 
 function App() {
+  const { dispatch } = useStateContext();
+
+  useEffect(() => {
+    getProducts(dispatch);
+  }, []);
+
   return (
     <>
       <Header />
