@@ -1,0 +1,151 @@
+.product-rating {
+  background-color: var(--green);
+  width: fit-content;
+  color: var(--white);
+  border-radius: 7px;
+  font-size: 0.75rem;
+}
+
+.product-container {
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.product-card {
+  transition: all 0.2s linear;
+}
+
+.card-vertical .card-image {
+  height: 150px;
+}
+
+.card-vertical .card-image img {
+  max-height: 150px;
+  margin: 0 auto;
+}
+
+.product-card:hover {
+  box-shadow: 0 0 5px 5px hsla(0, 1%, 82%, 0.384);
+}
+
+.card-icon {
+  position: relative;
+}
+
+.btn-wishlist {
+  position: absolute;
+  top: 1%;
+  right: 2%;
+}
+
+.btn.btn-wishlist i {
+  color: var(--red);
+}
+
+.btn.btn-addtocart {
+  font-size: 0.835rem !important;
+}
+
+.card-vertical .card-image {
+  width: 150px;
+}
+
+/* overwrite component library CSS */
+.filter-section .btn-link {
+  padding: 0.4rem 0.6rem;
+}
+
+/* taken from CSS-TRICKS 
+
+https://css-tricks.com/almanac/properties/l/line-clamp/
+
+*/
+
+/* filters */
+.filter-section {
+  position: fixed;
+  bottom: 0;
+  height: 4rem;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+  margin: 0;
+  box-shadow: 0 0 3px 4px var(--light-gray);
+  transition: height 0.2s linear;
+}
+
+.filter-section.open-filter {
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 2rem;
+}
+
+.filter-section.open-filter div {
+  justify-content: space-between;
+}
+
+.mobile-filter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.desktop-filter {
+  display: none;
+}
+
+.card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.margin-bottom {
+  margin-bottom: 64px;
+}
+
+@media screen and (min-width: 481px) {
+  .product-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .filter-section {
+    flex-basis: 25%;
+    flex-shrink: 0;
+    position: inherit;
+    height: fit-content;
+    margin: 1rem 0 0 1rem;
+    box-shadow: none;
+  }
+  .product-listing.flex-column {
+    flex-direction: row;
+  }
+
+  .mobile-filter {
+    display: none;
+  }
+
+  .desktop-filter {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .product-container {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .filter-section {
+    flex-basis: 20%;
+  }
+}
