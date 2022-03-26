@@ -1,0 +1,15 @@
+.category-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.category-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (min-width: 540px) {
+  .category-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
