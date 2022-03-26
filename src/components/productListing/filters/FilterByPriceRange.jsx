@@ -1,4 +1,12 @@
 export function FilterByPriceRange({ dispatch, filters }) {
+  function handlePriceRange(e) {
+    let value = e.target.value;
+
+    dispatch({
+      type: "FILTER_BY_PRICE_RANGE",
+      payload: value,
+    });
+  }
   return (
     <section className="mb-2">
       <h6>Price</h6>
@@ -9,6 +17,7 @@ export function FilterByPriceRange({ dispatch, filters }) {
         max="2000"
         step="100"
         list="tickmarks"
+        onChange={handlePriceRange}
         value={filters.price}
       />
 

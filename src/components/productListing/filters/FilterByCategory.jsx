@@ -1,22 +1,17 @@
+import { useStateContext } from "../../../context";
+
 export function FilterByCategory({ dispatch, filters }) {
-  const categories = [
-    "Car Mats",
-    "Car Tyres",
-    "Vehicle Cleaners",
-    "Car Lighting",
-    "Car Covers",
-    "Glass Cleaner",
-    "Pressure Washer",
-    "Air Purifiers",
-    "Vacuum Cleaner",
-  ];
+  const {
+    state: { categories },
+  } = useStateContext();
 
   return (
     <section>
       <h6>Categories</h6>
 
       <ul className="pl-1">
-        {categories.map((category) => {
+        {categories.map((categoryObject) => {
+          const category = categoryObject.categoryName;
           return (
             <li key={category}>
               <label className="flex align-center">
@@ -26,6 +21,15 @@ export function FilterByCategory({ dispatch, filters }) {
                   name={category.toLowerCase()}
                   value={category.toLocaleLowerCase()}
                   aria-label={category}
+                  onChange={(e) => {
+                    dispatch({
+                      type: "FILTER_BY_CATEGORY",
+                      payload: {
+                        isChecked: e.target.checked,
+                        value: e.target.value,
+                      },
+                    });
+                  }}
                   checked={filters.categories.includes(category.toLowerCase())}
                 />
                 {category}

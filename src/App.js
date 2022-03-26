@@ -12,7 +12,7 @@ import {
   Footer,
 } from "./components";
 
-import { getProducts } from "./utils/server-requests";
+import { getProducts, getCategories } from "./utils/server-requests";
 import { useStateContext } from "./context/state-context";
 
 import "./style.css";
@@ -22,6 +22,7 @@ function App() {
 
   useEffect(() => {
     getProducts(dispatch);
+    getCategories(dispatch);
   }, []);
 
   return (

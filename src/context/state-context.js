@@ -6,6 +6,7 @@ const StateContext = createContext({});
 
 const initialState = {
   products: [],
+  categories: [],
   productsInCart: [],
   productsInWishList: [],
   filters: {
@@ -13,7 +14,7 @@ const initialState = {
     inStock: false,
     rating: 0,
     categories: [],
-    price: 2000,
+    price: 10000,
   },
 };
 
