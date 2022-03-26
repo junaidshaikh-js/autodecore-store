@@ -5,11 +5,16 @@ import { ProductHeader } from "./ProductHeader";
 import { BtnIcon } from "../buttons";
 import { ProductCardPrice } from "./ProductCardPrice";
 import { AddToCartBtn } from "./AddToCartBtn";
-import { useStateContext } from "../../context";
+import { useAuth, useStateContext } from "../../context";
+import { useNavigate } from "react-router-dom";
 
 export function ProductCard({ product }) {
   const { state, dispatch } = useStateContext();
   const [isUpdating, setIsUpdating] = useState(false);
+  const {
+    state: { token },
+  } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <article className="card card-vertical p-1 border-m product-card card-icon">
@@ -36,7 +41,9 @@ export function ProductCard({ product }) {
           <BtnIcon
             cnames="btn icon-btn-primary btn-wishlist"
             onClick={() =>
-              toggleWishList(dispatch, product, setIsUpdating, state)
+              token
+                ? toggleWishList(dispatch, product, setIsUpdating, state)
+                : navigate("/login")
             }
             disabled={isUpdating}
           >

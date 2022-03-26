@@ -7,6 +7,7 @@ import "./header.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useFixBody } from "../../hooks";
+import { useAuth } from "../../context";
 
 import { BtnIcon } from "../buttons";
 
@@ -14,10 +15,13 @@ export function Header() {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
 
   function toggleSideMenu() {
-    console.log("toggling side menu");
     setIsSideMenuOpen((s) => !s);
   }
   useFixBody(isSideMenuOpen);
+
+  const {
+    state: { userName, token },
+  } = useAuth();
 
   return (
     <header>
@@ -56,17 +60,23 @@ export function Header() {
         </div>
 
         <ul onClick={toggleSideMenu}>
-          <li className="my-sm">
-            <Link to="/login">
-              <button className="btn">Login</button>
-            </Link>
-          </li>
+          {token ? (
+            <li className="my-sm">Hi, {userName} </li>
+          ) : (
+            <>
+              <li className="my-sm">
+                <Link to="/login">
+                  <button className="btn">Login</button>
+                </Link>
+              </li>
 
-          <li className="my-sm">
-            <Link to="/signup">
-              <button className="btn">Singup</button>
-            </Link>
-          </li>
+              <li className="my-sm">
+                <Link to="/signup">
+                  <button className="btn">Singup</button>
+                </Link>
+              </li>
+            </>
+          )}
 
           <li className="my-sm">
             <button className="btn">Settings</button>
