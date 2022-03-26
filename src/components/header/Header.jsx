@@ -72,7 +72,7 @@ export function Header() {
 
               <li className="my-sm">
                 <Link to="/signup">
-                  <button className="btn">Singup</button>
+                  <button className="btn">Signup</button>
                 </Link>
               </li>
             </>
