@@ -2,11 +2,9 @@ import { useState } from "react";
 
 import { ProductCardPrice } from "../productListing/ProductCardPrice";
 import { ProductHeader } from "../productListing/ProductHeader";
-import { useStateContext } from "../../context";
 import { BtnComplementary } from "../buttons";
 
 export function WishlistCard({ product }) {
-  const { state, dispatch } = useStateContext();
   const [isUpdating, setIsUpdating] = useState(false);
   return (
     <>
@@ -28,21 +26,12 @@ export function WishlistCard({ product }) {
           cnames="flex align-center"
         />
 
-        <BtnComplementary
-          onClick={() => moveToCart(dispatch, product, setIsUpdating, state)}
-          disabled={setIsUpdating}
-        >
+        <BtnComplementary disabled={setIsUpdating}>
           Move to Cart
         </BtnComplementary>
       </div>
 
-      <button
-        className="btn wishlist-remove-btn"
-        onClick={() =>
-          removeItemFromWishlist(dispatch, product, setIsUpdating, state)
-        }
-        disabled={isUpdating}
-      >
+      <button className="btn wishlist-remove-btn" disabled={isUpdating}>
         <i className="fas fa-trash"></i>
       </button>
     </>
