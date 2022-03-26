@@ -23,3 +23,33 @@ export const getCategories = async (dispatch) => {
     throw new Error("Categories can not be loaded,", err);
   }
 };
+
+export const loginAsGuest = async (
+  dispatch,
+  email,
+  password,
+  setIsLoading,
+  navigate
+) => {
+  setIsLoading(true);
+  try {
+    const res = await axios.post("/api/auth/login", {
+      email,
+      password,
+    });
+
+    if (res.status == 200 || res.status == 201) {
+      dispatch({ type: "LOGIN", payload: res.data });
+    }
+
+    localStorage.setItem("token", res.data.encodedToken);
+    localStorage.setItem("userName", res.data.foundUser.firstName);
+
+    setIsLoading(false);
+    navigate("/");
+  } catch (error) {
+    setIsLoading(false);
+    console.log(error.response);
+    throw new Error("can not be logged in");
+  }
+};
