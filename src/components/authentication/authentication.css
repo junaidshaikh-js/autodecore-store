@@ -1,0 +1,67 @@
+.login-form-wrapper,
+.signup-form-wrapper {
+  max-width: 800px;
+  margin: 2rem auto;
+  min-height: 80vh;
+}
+
+.login,
+.signup {
+  background-color: var(--white);
+  box-shadow: 0 0 7px var(--gray);
+  flex-direction: column;
+}
+
+.login__message,
+.signup__message {
+  background-color: var(--primary-color);
+  color: var(--white);
+  flex-basis: 30%;
+}
+
+.login__form,
+.signup__form {
+  flex-basis: 70%;
+}
+
+.primary-link {
+  color: var(--primary-color);
+}
+
+.login__form [type="checkbox"],
+.signup__form [type="checkbox"] {
+  min-height: 0;
+  height: auto;
+}
+
+.btn-complementary {
+  background-color: var(--complementary-color);
+  color: var(--white) !important;
+  font-size: 1rem;
+}
+
+.btn.btn-link {
+  padding: 0.7rem 1.8rem;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon input {
+  padding-right: 4rem;
+}
+
+.show-password-icon-container {
+  cursor: pointer;
+  position: absolute;
+  top: 7px;
+  right: 15px;
+}
+
+@media screen and (min-width: 589px) {
+  .login,
+  .signup {
+    flex-direction: row;
+  }
+}

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { makeServer } from "./server";
-import { StateProvider } from "./context/";
+import { StateProvider, AuthProvider } from "./context/";
 
 import App from "./App";
 
@@ -12,9 +12,11 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <StateProvider>
-        <App />
-      </StateProvider>
+      <AuthProvider>
+        <StateProvider>
+          <App />
+        </StateProvider>
+      </AuthProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
