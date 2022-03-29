@@ -16,7 +16,7 @@ export function WishlistContainer() {
           return (
             <article
               className="card card-horizontal p-1 border-m product-card"
-              key={product.productID}
+              key={product._id}
             >
               <WishlistCard product={product} />
             </article>
