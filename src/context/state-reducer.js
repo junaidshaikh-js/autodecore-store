@@ -12,6 +12,8 @@ export function stateReducer(state, { type, payload }) {
       return { ...state, products: payload };
     case "SET_CATEGORIES":
       return { ...state, categories: payload };
+    case "SET_CART":
+      return { ...state, productsInCart: payload };
     case "CLEAR_FILTERS":
       return {
         ...state,

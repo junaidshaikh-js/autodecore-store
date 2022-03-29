@@ -16,6 +16,7 @@ import {
   getProducts,
   getCategories,
   getWishList,
+  getCart,
 } from "./utils/server-requests";
 import { useStateContext, useAuth } from "./context";
 
@@ -31,6 +32,7 @@ function App() {
     getProducts(dispatch);
     getCategories(dispatch);
     getWishList(dispatch, token);
+    getCart(dispatch, token);
   }, []);
 
   return (

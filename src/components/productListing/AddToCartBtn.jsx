@@ -1,16 +1,26 @@
 import { useState } from "react";
-import { useAuth } from "../../context";
 import { useNavigate } from "react-router-dom";
+
+import { useAuth, useStateContext } from "../../context";
+import { isInList, addItemToCart } from "../../utils";
+import { InlineLoader } from "../loader";
 
 export function AddToCartBtn({ product }) {
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const {
     state: { token },
   } = useAuth();
+
+  const { state, dispatch } = useStateContext();
+
   const navigate = useNavigate();
 
   function handleAddToCart(product) {
-    console.log("adding to cart");
+    if (isInList(state.productsInCart, product._id))
+      navigate("/cart", { replace: true });
+    else {
+      addItemToCart(dispatch, product, setIsAddingToCart, state, token);
+    }
   }
 
   return (
@@ -21,7 +31,17 @@ export function AddToCartBtn({ product }) {
         token ? handleAddToCart(product) : navigate("/login");
       }}
     >
-      {!product.inStock ? "Out of stock" : "Add to cart"}
+      {!product.inStock ? (
+        "OUT OF STOCK"
+      ) : isAddingToCart ? (
+        <span className="flex justify-center align-center">
+          <InlineLoader /> "Adding"
+        </span>
+      ) : isInList(state.productsInCart, product._id) ? (
+        "Go to Cart"
+      ) : (
+        "Add to Cart"
+      )}
     </button>
   );
 }
