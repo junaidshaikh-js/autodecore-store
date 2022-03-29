@@ -12,17 +12,25 @@ import {
   Footer,
 } from "./components";
 
-import { getProducts, getCategories } from "./utils/server-requests";
-import { useStateContext } from "./context/state-context";
+import {
+  getProducts,
+  getCategories,
+  getWishList,
+} from "./utils/server-requests";
+import { useStateContext, useAuth } from "./context";
 
 import "./style.css";
 
 function App() {
   const { dispatch } = useStateContext();
+  const {
+    state: { token },
+  } = useAuth();
 
   useEffect(() => {
     getProducts(dispatch);
     getCategories(dispatch);
+    getWishList(dispatch, token);
   }, []);
 
   return (

@@ -7,6 +7,7 @@ import { ProductCardPrice } from "./ProductCardPrice";
 import { AddToCartBtn } from "./AddToCartBtn";
 import { useAuth, useStateContext } from "../../context";
 import { useNavigate } from "react-router-dom";
+import { isInList, toggleWishList } from "../../utils";
 
 export function ProductCard({ product }) {
   const { state, dispatch } = useStateContext();
@@ -42,12 +43,16 @@ export function ProductCard({ product }) {
             cnames="btn icon-btn-primary btn-wishlist"
             onClick={() =>
               token
-                ? toggleWishList(dispatch, product, setIsUpdating, state)
+                ? toggleWishList(dispatch, product, setIsUpdating, state, token)
                 : navigate("/login")
             }
             disabled={isUpdating}
           >
-            <FaRegHeart color="red" fontSize="18px" />
+            {isInList(state.productsInWishList, product._id) ? (
+              <FaHeart color="red" fontSize="18px" />
+            ) : (
+              <FaRegHeart color="red" fontSize="18px" />
+            )}
           </BtnIcon>
         </div>
       </div>
