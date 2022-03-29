@@ -3,9 +3,16 @@ import { useState } from "react";
 import { ProductCardPrice } from "../productListing/ProductCardPrice";
 import { ProductHeader } from "../productListing/ProductHeader";
 import { BtnComplementary } from "../buttons";
+import { removeItemFromWishlist } from "../../utils";
+import { useAuth, useStateContext } from "../../context";
 
 export function WishlistCard({ product }) {
   const [isUpdating, setIsUpdating] = useState(false);
+  const { dispatch } = useStateContext();
+  const {
+    state: { token },
+  } = useAuth();
+
   return (
     <>
       <div className="card-image">
@@ -31,7 +38,13 @@ export function WishlistCard({ product }) {
         </BtnComplementary>
       </div>
 
-      <button className="btn wishlist-remove-btn" disabled={isUpdating}>
+      <button
+        className="btn wishlist-remove-btn"
+        disabled={isUpdating}
+        onClick={() =>
+          removeItemFromWishlist(dispatch, product, setIsUpdating, token)
+        }
+      >
         <i className="fas fa-trash"></i>
       </button>
     </>

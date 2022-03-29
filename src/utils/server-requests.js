@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { isInList } from "./helper-function";
+
 export const getProducts = async (dispatch) => {
   try {
     const res = await axios.get("/api/products");
@@ -24,6 +26,12 @@ export const getCategories = async (dispatch) => {
   }
 };
 
+export const getWishList = async (dispatch, token) => {
+  const wishlist = JSON.parse(localStorage.getItem("data")).wishlist;
+
+  dispatch({ type: "SET_WISHLIST", payload: wishlist });
+};
+
 export const loginAsGuest = async (
   dispatch,
   email,
@@ -42,6 +50,7 @@ export const loginAsGuest = async (
       dispatch({ type: "LOGIN", payload: res.data });
     }
 
+    localStorage.setItem("data", JSON.stringify(res.data.foundUser));
     localStorage.setItem("token", res.data.encodedToken);
     localStorage.setItem("userName", res.data.foundUser.firstName);
 
@@ -53,3 +62,75 @@ export const loginAsGuest = async (
     throw new Error("can not be logged in");
   }
 };
+
+export async function toggleWishList(
+  dispatch,
+  product,
+  setIsUpdating,
+  state,
+  token
+) {
+  setIsUpdating(true);
+  if (!isInList(state.productsInWishList, product._id)) {
+    try {
+      const res = await axios({
+        method: "post",
+        url: "/api/user/wishlist",
+        data: {
+          product,
+        },
+        headers: {
+          authorization: token,
+        },
+      });
+      if ((res.status = "200" || res.status == "201")) {
+        dispatch({ type: "ADD_TO_WISHLIST", payload: res.data.wishlist });
+
+        let data = JSON.parse(localStorage.getItem("data"));
+        data = { ...data, wishlist: [...data.wishlist, product] };
+        localStorage.setItem("data", JSON.stringify(data));
+      }
+      setIsUpdating(false);
+    } catch (error) {
+      console.log(error);
+      throw new Error("can not be added to wishlist");
+    }
+  } else {
+    removeItemFromWishlist(dispatch, product, setIsUpdating, token);
+  }
+}
+
+export async function removeItemFromWishlist(
+  dispatch,
+  product,
+  setIsUpdating,
+
+  token
+) {
+  try {
+    const res = await axios({
+      method: "delete",
+      url: `/api/user/wishlist/${product["_id"]}`,
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if ((res.status = "200" || res.status == "201")) {
+      console.log(res);
+      dispatch({
+        type: "REMOVE_ITEM_FROM_WISHLIST",
+        payload: res.data.wishlist,
+      });
+
+      let data = JSON.parse(localStorage.getItem("data"));
+      data = { ...data, wishlist: res.data.wishlist };
+      localStorage.setItem("data", JSON.stringify(data));
+    }
+
+    setIsUpdating(false);
+  } catch (error) {
+    setIsUpdating(false);
+    throw new Error("can not be deleted from wishlist");
+  }
+}

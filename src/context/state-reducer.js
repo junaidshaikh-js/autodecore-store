@@ -52,6 +52,13 @@ export function stateReducer(state, { type, payload }) {
         ...state,
         filters: { ...state.filters, sort: payload },
       };
+    case "ADD_TO_WISHLIST":
+    case "REMOVE_ITEM_FROM_WISHLIST":
+    case "SET_WISHLIST":
+      return {
+        ...state,
+        productsInWishList: payload,
+      };
     default:
       throw new Error("Unhandled action type");
   }
