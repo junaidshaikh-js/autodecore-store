@@ -61,6 +61,12 @@ export function stateReducer(state, { type, payload }) {
         ...state,
         productsInWishList: payload,
       };
+    case "REMOVE_ITEM_FROM_CART":
+    case "UPDATE_CART_QUANTITY":
+      return {
+        ...state,
+        productsInCart: payload,
+      };
     default:
       throw new Error("Unhandled action type");
   }

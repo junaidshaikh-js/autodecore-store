@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { isInList } from "./helper-function";
+import { isInList, getProduct } from "./helper-function";
 
 export const getProducts = async (dispatch) => {
   try {
@@ -68,7 +68,6 @@ export const loginAsGuest = async (
     navigate("/");
   } catch (error) {
     setIsLoading(false);
-    console.log(error.response);
     throw new Error("can not be logged in");
   }
 };
@@ -102,7 +101,6 @@ export async function toggleWishList(
       }
       setIsUpdating(false);
     } catch (error) {
-      console.log(error);
       throw new Error("can not be added to wishlist");
     }
   } else {
@@ -127,7 +125,6 @@ export async function removeItemFromWishlist(
     });
 
     if ((res.status = "200" || res.status == "201")) {
-      console.log(res);
       dispatch({
         type: "REMOVE_ITEM_FROM_WISHLIST",
         payload: res.data.wishlist,
@@ -179,3 +176,128 @@ export const addItemToCart = async (
     throw new Error("failed! try again");
   }
 };
+
+export async function removeItemFromCart(
+  dispatch,
+  product,
+  setIsUpdating,
+  token
+) {
+  setIsUpdating(true);
+  try {
+    const res = await axios({
+      method: "delete",
+      url: `/api/user/cart/${product._id}`,
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status == 200 || res.status == 201) {
+      dispatch({ type: "REMOVE_ITEM_FROM_CART", payload: res.data.cart });
+    }
+
+    let data = JSON.parse(localStorage.getItem("data"));
+    data = { ...data, cart: res.data.cart };
+    localStorage.setItem("data", JSON.stringify(data));
+
+    setIsUpdating(false);
+  } catch (error) {
+    throw new Error("Item can not be removed");
+  }
+}
+
+export async function saveToWishlist(
+  dispatch,
+  product,
+  setIsUpdating,
+  state,
+  token
+) {
+  try {
+    removeItemFromCart(dispatch, product, setIsUpdating, token);
+
+    if (!isInList(state.productsInWishList, product._id)) {
+      toggleWishList(dispatch, product, setIsUpdating, state, token);
+    }
+  } catch (error) {
+    throw new Error("Item can not be saved to wishlist");
+  }
+}
+
+export async function updateProductQuantity(
+  dispatch,
+  product,
+  setIsUpdating,
+  state,
+  token,
+  type
+) {
+  setIsUpdating(true);
+  if (product.qty >= product.avalQty && type == "increment") {
+    alert(`Can not than ${product.avalQty}`);
+    setIsUpdating(false);
+  } else {
+    try {
+      const res = await axios({
+        method: "post",
+        url: `/api/user/cart/${product._id}`,
+        data: {
+          action: {
+            type,
+          },
+        },
+        headers: {
+          authorization: token,
+        },
+      });
+
+      if (res.status == 200 || res.status == 201) {
+        dispatch({
+          type: "UPDATE_CART_QUANTITY",
+          payload: res.data.cart,
+        });
+      }
+
+      let data = JSON.parse(localStorage.getItem("data"));
+      data = { ...data, cart: res.data.cart };
+      localStorage.setItem("data", JSON.stringify(data));
+
+      setIsUpdating(false);
+    } catch (error) {
+      setIsUpdating(false);
+    }
+  }
+}
+
+export async function moveToCart(
+  dispatch,
+  product,
+  setIsUpdating,
+  state,
+  token,
+  navigate
+) {
+  try {
+    if (!isInList(state.productsInCart, product._id)) {
+      await addItemToCart(dispatch, product, setIsUpdating, state, token);
+    } else {
+      const cartProduct = getProduct(state.productsInCart, product._id);
+
+      if (cartProduct.qty < cartProduct.avalQty) {
+        await updateProductQuantity(
+          dispatch,
+          product,
+          setIsUpdating,
+          state,
+          token,
+          "increment"
+        );
+      }
+    }
+
+    navigate("/cart");
+  } catch (error) {
+    throw new Error("Can not be added to cart");
+  }
+}
