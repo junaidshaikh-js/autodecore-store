@@ -1,0 +1,20 @@
+.margin-bottom {
+  margin-bottom: 64px;
+}
+
+/* stick footer to bottom of page */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-wrapper {
+  margin-top: auto;
+}
+
+@media screen and (min-width: 769px) {
+  .margin-bottom {
+    margin-bottom: 0;
+  }
+}
