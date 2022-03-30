@@ -1,6 +1,7 @@
 .wishlist-main {
   max-width: 1200px;
-  margin: auto;
+  margin: 1rem auto;
+  width: 100%;
 }
 
 .wishlist-user-detail {
