@@ -26,10 +26,20 @@ export const getCategories = async (dispatch) => {
   }
 };
 
-export const getWishList = async (dispatch, token) => {
-  const wishlist = JSON.parse(localStorage.getItem("data")).wishlist;
+export const getCart = async (dispatch, token) => {
+  if (token) {
+    const cart = JSON.parse(localStorage.getItem("data")).cart;
 
-  dispatch({ type: "SET_WISHLIST", payload: wishlist });
+    dispatch({ type: "SET_CART", payload: cart });
+  }
+};
+
+export const getWishList = async (dispatch, token) => {
+  if (token) {
+    const wishlist = JSON.parse(localStorage.getItem("data")).wishlist;
+
+    dispatch({ type: "SET_WISHLIST", payload: wishlist });
+  }
 };
 
 export const loginAsGuest = async (
@@ -134,3 +144,38 @@ export async function removeItemFromWishlist(
     throw new Error("can not be deleted from wishlist");
   }
 }
+
+export const addItemToCart = async (
+  dispatch,
+  product,
+  setIsUpdating,
+  state,
+  token
+) => {
+  try {
+    setIsUpdating(true);
+    const res = await axios({
+      method: "post",
+      url: "/api/user/cart",
+      data: {
+        product,
+      },
+      headers: {
+        authorization: token,
+      },
+    });
+    if (res.status == 200 || res.status == 201) {
+      dispatch({
+        type: "SET_CART",
+        payload: res.data.cart,
+      });
+
+      let data = JSON.parse(localStorage.getItem("data"));
+      data = { ...data, cart: [...data.cart, product] };
+      localStorage.setItem("data", JSON.stringify(data));
+    }
+    setIsUpdating(false);
+  } catch (error) {
+    throw new Error("failed! try again");
+  }
+};
