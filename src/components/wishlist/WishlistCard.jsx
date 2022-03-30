@@ -5,11 +5,11 @@ import { ProductCardPrice } from "../productListing/ProductCardPrice";
 import { ProductHeader } from "../productListing/ProductHeader";
 import { BtnComplementary } from "../buttons";
 import { isInList, removeItemFromWishlist, moveToCart } from "../../utils";
-import { useAuth, useStateContext } from "../../context";
+import { useAuth, useData } from "../../context";
 
 export function WishlistCard({ product }) {
   const [isUpdating, setIsUpdating] = useState(false);
-  const { state, dispatch } = useStateContext();
+  const { state, dispatch } = useData();
   const {
     state: { token },
   } = useAuth();

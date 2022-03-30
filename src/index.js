@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { makeServer } from "./server";
-import { StateProvider, AuthProvider } from "./context/";
+import { DataProvider, AuthProvider } from "./context/";
 
 import App from "./App";
 
@@ -13,9 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <StateProvider>
+        <DataProvider>
           <App />
-        </StateProvider>
+        </DataProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

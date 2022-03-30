@@ -1,11 +1,11 @@
-import { useStateContext } from "../../context";
+import { useData } from "../../../context";
 import { ProductDeliverAddress } from "./ProductDeliverAddress";
-import { CartProducts } from "./CartProducts";
+import { CartProduct } from "./CartProduct";
 
 export function CartDetails() {
   const {
     state: { productsInCart },
-  } = useStateContext();
+  } = useData();
 
   return (
     <section className="cart-details p-1 bg-white">
@@ -14,7 +14,10 @@ export function CartDetails() {
       </h1>
 
       <ProductDeliverAddress />
-      <CartProducts />
+
+      {productsInCart.map((product) => (
+        <CartProduct product={product} key={product._id} />
+      ))}
     </section>
   );
 }

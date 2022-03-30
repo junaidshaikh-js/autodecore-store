@@ -5,12 +5,12 @@ import { ProductHeader } from "./ProductHeader";
 import { BtnIcon } from "../buttons";
 import { ProductCardPrice } from "./ProductCardPrice";
 import { AddToCartBtn } from "./AddToCartBtn";
-import { useAuth, useStateContext } from "../../context";
+import { useAuth, useData } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { isInList, toggleWishList } from "../../utils";
 
 export function ProductCard({ product }) {
-  const { state, dispatch } = useStateContext();
+  const { state, dispatch } = useData();
   const [isUpdating, setIsUpdating] = useState(false);
   const {
     state: { token },

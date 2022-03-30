@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 
-import { useStateContext } from "../../context/state-context";
+import { useData } from "../../context";
 import { BtnSecondary } from "../buttons";
 
 import "./header.css";
@@ -11,7 +11,7 @@ export function NavButtons() {
 
   const {
     state: { productsInCart, productsInWishList },
-  } = useStateContext();
+  } = useData();
 
   const {
     state: { userName, token },

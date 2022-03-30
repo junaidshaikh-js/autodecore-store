@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAuth, useStateContext } from "../../context";
+import { useAuth, useData } from "../../context";
 import { isInList, addItemToCart } from "../../utils";
 import { InlineLoader } from "../loader";
 
@@ -11,7 +11,7 @@ export function AddToCartBtn({ product }) {
     state: { token },
   } = useAuth();
 
-  const { state, dispatch } = useStateContext();
+  const { state, dispatch } = useData();
 
   const navigate = useNavigate();
 

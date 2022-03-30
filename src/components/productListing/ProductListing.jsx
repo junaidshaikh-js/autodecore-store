@@ -1,4 +1,4 @@
-import { useStateContext } from "../../context/state-context";
+import { useData } from "../../context/data-context";
 import { Filter } from "./Filter";
 import { ProductCard } from "./ProductCard";
 
@@ -8,7 +8,7 @@ import { getFilteredProducts } from "./filters/filter-functions";
 export function ProductListing() {
   const {
     state: { products, filters },
-  } = useStateContext();
+  } = useData();
 
   const filteredProducts = getFilteredProducts(products, filters);
   return (

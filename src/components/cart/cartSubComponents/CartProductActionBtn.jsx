@@ -5,13 +5,13 @@ import {
   removeItemFromCart,
   saveToWishlist,
   updateProductQuantity,
-} from "../../utils";
-import { useAuth, useStateContext } from "../../context";
+} from "../../../utils";
+import { useAuth, useData } from "../../../context";
 
 export function CartProductActionBtn({ product }) {
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const { state, dispatch } = useStateContext();
+  const { state, dispatch } = useData();
   const {
     state: { token },
   } = useAuth();
