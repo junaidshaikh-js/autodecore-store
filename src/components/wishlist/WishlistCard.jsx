@@ -37,12 +37,14 @@ export function WishlistCard({ product }) {
         />
 
         <BtnComplementary
-          disabled={setIsUpdating}
+          disabled={!product.inStock || setIsUpdating}
           onClick={() =>
             moveToCart(dispatch, product, setIsUpdating, state, token, navigate)
           }
         >
-          {isInList(state.productsInCart, product._id)
+          {!product.inStock
+            ? "Out of stock"
+            : isInList(state.productsInCart, product._id)
             ? "Go to Cart"
             : isUpdating
             ? "Moving to cart..."
