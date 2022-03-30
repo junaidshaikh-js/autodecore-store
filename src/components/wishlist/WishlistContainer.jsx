@@ -1,9 +1,9 @@
-import { useStateContext } from "../../context";
+import { useData } from "../../context";
 import { EmptyWishlist } from "./EmptyWishlist";
 import { WishlistCard } from "./WishlistCard";
 
 export function WishlistContainer() {
-  const { state } = useStateContext();
+  const { state } = useData();
 
   return (
     <section className="wishlist-container bg-white m-1 p-1 flex-grow">

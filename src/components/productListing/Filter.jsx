@@ -9,7 +9,7 @@ import {
   SortByPrice,
 } from "./filters";
 
-import { useStateContext } from "../../context";
+import { useData } from "../../context";
 import { BtnComplementary } from "../buttons";
 import { useFixBody } from "../../hooks";
 
@@ -19,7 +19,7 @@ export function Filter() {
   const {
     state: { filters },
     dispatch,
-  } = useStateContext();
+  } = useData();
 
   useFixBody(isFilterOpen);
 

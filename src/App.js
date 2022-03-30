@@ -18,12 +18,12 @@ import {
   getWishList,
   getCart,
 } from "./utils/server-requests";
-import { useStateContext, useAuth } from "./context";
+import { useData, useAuth } from "./context";
 
 import "./style.css";
 
 function App() {
-  const { dispatch } = useStateContext();
+  const { dispatch } = useData();
   const {
     state: { token },
   } = useAuth();

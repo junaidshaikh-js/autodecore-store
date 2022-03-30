@@ -1,4 +1,4 @@
-import { useStateContext } from "../../context";
+import { useData } from "../../../context";
 import { PriceDetailsRow } from "./PriceDetailsRow";
 
 function calculateCartPrice(productsInCart) {
@@ -29,7 +29,7 @@ function calculateCartPrice(productsInCart) {
 export function CartPriceDetails() {
   const {
     state: { productsInCart },
-  } = useStateContext();
+  } = useData();
 
   const { price, discount, deliveryCharge, totalAmount, moneySaved } =
     calculateCartPrice(productsInCart);

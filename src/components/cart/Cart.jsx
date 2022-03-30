@@ -1,14 +1,13 @@
-import { useStateContext } from "../../context";
+import { useData } from "../../context";
 import { EmptyCart } from "./EmptyCart";
-import { CartDetails } from "./CartDetails";
-import { CartPriceDetails } from "./CartPriceDetails";
+import { CartDetails, CartPriceDetails } from "./cartSubComponents";
 
 import "./cart.css";
 
 export function Cart() {
   const {
     state: { productsInCart },
-  } = useStateContext();
+  } = useData();
 
   return (
     <>

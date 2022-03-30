@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import Banner from "../../assets/banner.png";
 import { Category } from "./Category.jsx";
-import { useStateContext } from "../../context";
+import { useData } from "../../context";
 import "./home.css";
 
 export function Home() {
   const {
     state: { categories },
-  } = useStateContext();
+  } = useData();
 
   const featuredCategories = categories.filter(
     (category) => category.description == "featured category"

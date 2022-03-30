@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { useStateContext } from "../../context";
+import { useData } from "../../context";
 
 export function Category({ categoryName, sources }) {
-  const { dispatch } = useStateContext();
+  const { dispatch } = useData();
   return (
     <div className="bg-white my-1">
       <section className="category-section  txt-center p-sm pb-1 ">

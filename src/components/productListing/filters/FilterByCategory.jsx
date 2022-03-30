@@ -1,9 +1,9 @@
-import { useStateContext } from "../../../context";
+import { useData } from "../../../context";
 
 export function FilterByCategory({ dispatch, filters }) {
   const {
     state: { categories },
-  } = useStateContext();
+  } = useData();
 
   return (
     <section>

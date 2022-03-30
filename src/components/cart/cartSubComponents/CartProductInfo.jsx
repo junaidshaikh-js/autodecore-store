@@ -1,4 +1,4 @@
-import { ProductHeader, ProductCardPrice } from "../productListing";
+import { ProductHeader, ProductCardPrice } from "../../productListing";
 
 export function CartProductInfo({
   product: {

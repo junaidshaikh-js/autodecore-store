@@ -6,7 +6,7 @@ const filterInitialState = {
   price: 2000,
 };
 
-export function stateReducer(state, { type, payload }) {
+export function dataReducer(state, { type, payload }) {
   switch (type) {
     case "SET_PRODUCTS":
       return { ...state, products: payload };
