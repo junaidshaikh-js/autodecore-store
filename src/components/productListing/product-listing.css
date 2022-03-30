@@ -105,10 +105,6 @@ https://css-tricks.com/almanac/properties/l/line-clamp/
   overflow: hidden;
 }
 
-.margin-bottom {
-  margin-bottom: 64px;
-}
-
 @media screen and (min-width: 481px) {
   .product-container {
     grid-template-columns: 1fr 1fr;
