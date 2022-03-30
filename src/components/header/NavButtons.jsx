@@ -20,20 +20,16 @@ export function NavButtons() {
   return (
     <div>
       <ul className="hy-navbar-links">
-        <li className="mr-1">
+        <li className="mr-1 hide-small">
           {token ? (
             <span style={{ fontSize: "1rem" }}>Hi, {userName} </span>
           ) : location.pathname === "/login" ? (
             <Link to="/signup">
-              <span className="signup-btn">
-                <BtnSecondary>signup</BtnSecondary>
-              </span>
+              <BtnSecondary>signup</BtnSecondary>
             </Link>
           ) : (
             <Link to="/login">
-              <span className="login-btn">
-                <BtnSecondary>login</BtnSecondary>
-              </span>
+              <BtnSecondary>login</BtnSecondary>
             </Link>
           )}
         </li>

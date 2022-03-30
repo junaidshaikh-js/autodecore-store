@@ -2,9 +2,7 @@
   display: inline-block;
 }
 
-.hy-navbar-links .login-btn,
-.signup-btn,
-.logout-btn {
+.hy-navbar-links .hide-small {
   display: none;
 }
 
@@ -66,9 +64,7 @@ i[title="search"] {
 }
 
 @media screen and (min-width: 769px) {
-  .hy-navbar-links .login-btn,
-  .signup-btn,
-  .logout-btn {
+  .hy-navbar-links .hide-small {
     display: inline-block;
   }
 
