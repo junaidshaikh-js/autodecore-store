@@ -1,17 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ProductCardPrice } from "../productListing/ProductCardPrice";
 import { ProductHeader } from "../productListing/ProductHeader";
 import { BtnComplementary } from "../buttons";
-import { removeItemFromWishlist } from "../../utils";
+import { isInList, removeItemFromWishlist, moveToCart } from "../../utils";
 import { useAuth, useStateContext } from "../../context";
 
 export function WishlistCard({ product }) {
   const [isUpdating, setIsUpdating] = useState(false);
-  const { dispatch } = useStateContext();
+  const { state, dispatch } = useStateContext();
   const {
     state: { token },
   } = useAuth();
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -33,8 +36,17 @@ export function WishlistCard({ product }) {
           cnames="flex align-center"
         />
 
-        <BtnComplementary disabled={setIsUpdating}>
-          Move to Cart
+        <BtnComplementary
+          disabled={setIsUpdating}
+          onClick={() =>
+            moveToCart(dispatch, product, setIsUpdating, state, token, navigate)
+          }
+        >
+          {isInList(state.productsInCart, product._id)
+            ? "Go to Cart"
+            : isUpdating
+            ? "Moving to cart..."
+            : "Move to Cart"}
         </BtnComplementary>
       </div>
 
