@@ -2,14 +2,51 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { BtnComplementary, BtnPrimary } from "../buttons";
-import { loginAsGuest } from "../../utils";
+import { login } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import { InlineLoader } from "../loader";
+import { Loader } from "../loader";
+import { getValidated } from "./utils/getValidated";
 import "./authentication.css";
 
 export function Login() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [logging, setIsLogging] = useState(false);
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+  const [loginError, setLoginError] = useState("");
+
+  const handleFormLogin = (e) => {
+    const { value, id: key } = e.target;
+
+    setLoginData((l) => ({ ...l, [key]: value }));
+  };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+
+    const isValidated = getValidated(loginData.email, loginData.password);
+
+    console.log("isvalidated before if", isValidated);
+    if (!isValidated) {
+      console.log("running if");
+      setLoginError("Invalid email or password");
+
+      return;
+    }
+
+    console.log("running after if");
+
+    login(
+      dispatch,
+      loginData.email,
+      loginData.password,
+      setIsLogging,
+      navigate,
+      setLoginError
+    );
+  };
 
   const { dispatch } = useAuth();
   const navigate = useNavigate();
@@ -22,6 +59,9 @@ export function Login() {
   return (
     <div className="main-wrapper">
       <main>
+        {/* TODO: handle with toast  */}
+        <span className="login-error">{loginError}</span>
+
         <div className="login-form-wrapper flex flex-center">
           <article className="login flex mx-1">
             <div className="login__message p-1 flex-grow">
@@ -31,15 +71,17 @@ export function Login() {
             <div className="login__form mt-1 p-1 flex-grow">
               <form>
                 <div>
-                  <label htmlFor="input" className="form-label field-required">
+                  <label htmlFor="email" className="form-label field-required">
                     Email Address
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     className="form-field my-sm p-sm border-sm w-100"
                     placeholder="johndoe@example.com"
-                    id="input"
+                    id="email"
                     required
+                    value={loginData.email}
+                    onChange={handleFormLogin}
                   />
                 </div>
 
@@ -58,6 +100,8 @@ export function Login() {
                       placeholder="*********"
                       id="password"
                       required
+                      value={loginData.password}
+                      onChange={handleFormLogin}
                     />
 
                     <span
@@ -73,19 +117,12 @@ export function Login() {
                   </div>
                 </div>
 
-                {/* will be used for later features */}
-                {/* <div className="flex justify-between align-center mt-2">
-                  <span>
-                    <input className="mr-sm" type="checkbox" id="remember-me" />
-                    <label for="remember-me"> Remember me</label>
-                  </span>
-
-                  <a href="#" className="primary-link">
-                    Forgot Password?
-                  </a>
-                </div> */}
-
-                <BtnComplementary cnames="w-100 mt-1" type="submit">
+                <BtnComplementary
+                  cnames="w-100 mt-1"
+                  type="submit"
+                  onClick={handleLoginSubmit}
+                  disabled={logging}
+                >
                   Login
                 </BtnComplementary>
               </form>
@@ -94,23 +131,18 @@ export function Login() {
                 cnames="w-100 mt-1"
                 type="submit"
                 onClick={() =>
-                  loginAsGuest(
+                  login(
                     dispatch,
                     testData.email,
                     testData.password,
                     setIsLogging,
-                    navigate
+                    navigate,
+                    setLoginError
                   )
                 }
+                disabled={logging}
               >
-                {logging ? (
-                  <span className="flex align-center justify-center">
-                    {" "}
-                    <InlineLoader /> Please Wait{" "}
-                  </span>
-                ) : (
-                  "Login as Guest"
-                )}
+                Login as Guest
               </BtnPrimary>
 
               <div className="txt-center mt-1 primary-link">
@@ -122,6 +154,8 @@ export function Login() {
             </div>
           </article>
         </div>
+
+        {logging && <Loader />}
       </main>
     </div>
   );

@@ -4,7 +4,7 @@ export function authReducer(state, { type, payload }) {
       return {
         ...state,
         token: payload.encodedToken,
-        userName: payload.foundUser.firstName,
+        userName: payload.foundUser?.firstName,
       };
     default:
       throw new Error("Unhandled type in auth reducer");
