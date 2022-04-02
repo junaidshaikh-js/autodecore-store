@@ -4,9 +4,11 @@ export function Loader() {
   const centerLoader = {
     display: "flex",
     height: "70vh",
-    width: "100vw",
+    width: "95vw",
     alignItems: "center",
     justifyContent: "center",
+    position: "absolute",
+    top: "0",
   };
   return (
     <div style={centerLoader}>

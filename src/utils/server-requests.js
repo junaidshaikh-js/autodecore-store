@@ -42,12 +42,13 @@ export const getWishList = async (dispatch, token) => {
   }
 };
 
-export const loginAsGuest = async (
+export const login = async (
   dispatch,
   email,
   password,
   setIsLoading,
-  navigate
+  navigate,
+  setLoginError
 ) => {
   setIsLoading(true);
   try {
@@ -58,15 +59,21 @@ export const loginAsGuest = async (
 
     if (res.status == 200 || res.status == 201) {
       dispatch({ type: "LOGIN", payload: res.data });
-    }
 
-    localStorage.setItem("data", JSON.stringify(res.data.foundUser));
-    localStorage.setItem("token", res.data.encodedToken);
-    localStorage.setItem("userName", res.data.foundUser.firstName);
+      localStorage.setItem("data", JSON.stringify(res.data.foundUser));
+      localStorage.setItem("token", res.data.encodedToken);
+      localStorage.setItem("userName", res.data.foundUser.firstName);
+    }
 
     setIsLoading(false);
     navigate("/");
   } catch (error) {
+    if (error.response?.status == 404) {
+      setLoginError("You are not registered with us. Please sign up");
+    } else {
+      setLoginError("Wrong password");
+    }
+
     setIsLoading(false);
     throw new Error("can not be logged in");
   }
