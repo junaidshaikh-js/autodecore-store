@@ -6,3 +6,4 @@ export * from "./wishlist";
 export * from "./authentication";
 export * from "./footer";
 export * from "./buttons";
+export * from "./Error-404";
