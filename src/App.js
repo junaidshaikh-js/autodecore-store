@@ -10,6 +10,7 @@ import {
   Login,
   Signup,
   Footer,
+  Error404,
 } from "./components";
 
 import {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
     </>
