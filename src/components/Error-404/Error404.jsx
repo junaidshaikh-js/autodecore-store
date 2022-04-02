@@ -7,11 +7,9 @@ export function Error404() {
       <figure>
         <img src={ErrorImage} alt="Error" width="369" height="265" />
       </figure>
-      <p>
-        Unfortunately the page you are looking for has been moved or deleted
-      </p>
+      <p>Unfortunately the page you are looking for, does not exist!</p>
       <Link to="/">
-        <button className="btn btn-primary">Go To Homepage</button>
+        <button className="btn btn-primary my-2">Go To Homepage</button>
       </Link>
     </main>
   );
