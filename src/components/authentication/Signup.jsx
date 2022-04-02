@@ -1,12 +1,32 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BtnComplementary } from "../buttons";
+import { ErrorMessage } from "./ErrorMessage";
 import { ShowPasswordVisibility } from "./ShowPasswordVisibility";
+import { handleSignupSubmit } from "./utils/handle-signup-submit";
 
 export function Signup() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
+
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  const [singupValues, setSignupValues] = useState(initialValues);
+
+  const [signupErrors, setSignupErrors] = useState(initialValues);
+
+  const handleSingupValues = (e) => {
+    const { name: key, value } = e.target;
+
+    setSignupValues((s) => ({ ...s, [key]: value }));
+  };
 
   return (
     <div className="main-wrapper">
@@ -31,8 +51,14 @@ export function Signup() {
                     className="form-field my-sm p-sm border-sm w-100"
                     placeholder="John"
                     id="first-name"
+                    name="firstName"
                     required
+                    onChange={(e) => handleSingupValues(e)}
                   />
+
+                  {signupErrors.firstName && (
+                    <ErrorMessage text={signupErrors.firstName} />
+                  )}
                 </div>
 
                 <div>
@@ -48,7 +74,13 @@ export function Signup() {
                     placeholder="Doe"
                     id="last-name"
                     required
+                    name="lastName"
+                    onChange={(e) => handleSingupValues(e)}
                   />
+
+                  {signupErrors.lastName && (
+                    <ErrorMessage text={signupErrors.lastName} />
+                  )}
                 </div>
 
                 <div>
@@ -60,8 +92,14 @@ export function Signup() {
                     className="form-field my-sm p-sm border-sm w-100"
                     placeholder="johndoe@example.com"
                     id="input"
+                    name="email"
+                    onChange={(e) => handleSingupValues(e)}
                     required
                   />
+
+                  {signupErrors.email && (
+                    <ErrorMessage text={signupErrors.email} />
+                  )}
                 </div>
 
                 <div>
@@ -78,6 +116,8 @@ export function Signup() {
                       className="form-field my-sm p-sm border-sm w-100"
                       placeholder="*********"
                       id="password"
+                      name="password"
+                      onChange={(e) => handleSingupValues(e)}
                       required
                     />
 
@@ -86,6 +126,10 @@ export function Signup() {
                       onClick={() => setIsPasswordVisible((p) => !p)}
                     />
                   </div>
+
+                  {signupErrors.password && (
+                    <ErrorMessage text={signupErrors.password} />
+                  )}
                 </div>
 
                 <div>
@@ -102,6 +146,8 @@ export function Signup() {
                       className="form-field my-sm p-sm border-sm w-100"
                       placeholder="*********"
                       id="confirm-password"
+                      name="confirmPassword"
+                      onChange={(e) => handleSingupValues(e)}
                       required
                     />
 
@@ -110,25 +156,18 @@ export function Signup() {
                       onClick={() => setIsConfirmPasswordVisible((p) => !p)}
                     />
                   </div>
-                </div>
 
-                <div className="flex align-center mt-2">
-                  <span className="field-required">
-                    <input
-                      className="mr-sm"
-                      type="checkbox"
-                      id="remember-me"
-                      required
-                    />
-                    <label htmlFor="remember-me">
-                      I accept all the terms and conditions
-                    </label>
-                  </span>
+                  {signupErrors.confirmPassword && (
+                    <ErrorMessage text={signupErrors.confirmPassword} />
+                  )}
                 </div>
 
                 <BtnComplementary
                   cnames="signup-submit w-100 mt-1"
                   type="submit"
+                  onClick={(e) =>
+                    handleSignupSubmit(e, singupValues, setSignupErrors)
+                  }
                 >
                   Create New Account
                 </BtnComplementary>
