@@ -75,6 +75,12 @@
   transform: translateX(-50%);
 }
 
+.error {
+  color: red;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
 @media screen and (min-width: 589px) {
   .login,
   .signup {
