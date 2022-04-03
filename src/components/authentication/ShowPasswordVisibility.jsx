@@ -1,5 +1,4 @@
 export function ShowPasswordVisibility({ onClick, isVisible }) {
-  console.log(isVisible);
   return (
     <>
       <span className="show-password-icon-container" onClick={onClick}>

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader } from "../loader";
 import { getValidated } from "./utils/getValidated";
 import "./authentication.css";
+import { ErrorMessage } from "./ErrorMessage";
 
 export function Login() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -17,6 +18,11 @@ export function Login() {
   });
   const [loginError, setLoginError] = useState("");
 
+  const [loginFormErrors, setLoginFormErrors] = useState({});
+
+  const { dispatch } = useAuth();
+  const navigate = useNavigate();
+
   const handleFormLogin = (e) => {
     const { value, id: key } = e.target;
 
@@ -26,30 +32,21 @@ export function Login() {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
 
-    const isValidated = getValidated(loginData.email, loginData.password);
+    const errors = getValidated(loginData.email, loginData.password);
 
-    console.log("isvalidated before if", isValidated);
-    if (!isValidated) {
-      console.log("running if");
-      setLoginError("Invalid email or password");
+    setLoginFormErrors(errors);
 
-      return;
+    if (!Object.keys(errors).length) {
+      login(
+        dispatch,
+        loginData.email,
+        loginData.password,
+        setIsLogging,
+        navigate,
+        setLoginError
+      );
     }
-
-    console.log("running after if");
-
-    login(
-      dispatch,
-      loginData.email,
-      loginData.password,
-      setIsLogging,
-      navigate,
-      setLoginError
-    );
   };
-
-  const { dispatch } = useAuth();
-  const navigate = useNavigate();
 
   const testData = {
     email: "adarshbalika@gmail.com",
@@ -83,6 +80,10 @@ export function Login() {
                     value={loginData.email}
                     onChange={handleFormLogin}
                   />
+
+                  {loginFormErrors.email && (
+                    <ErrorMessage text={loginFormErrors.email} />
+                  )}
                 </div>
 
                 <div>
@@ -115,6 +116,10 @@ export function Login() {
                       )}
                     </span>
                   </div>
+
+                  {loginFormErrors.password && (
+                    <ErrorMessage text={loginFormErrors.password} />
+                  )}
                 </div>
 
                 <BtnComplementary
