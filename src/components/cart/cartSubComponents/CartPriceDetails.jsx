@@ -11,16 +11,18 @@ function calculateCartPrice(productsInCart) {
   };
 
   return productsInCart.reduce((acc, value) => {
-    const productPrice = value.qty * value.discountedPrice;
-    const productDisconut = value.originalPrice - value.discountedPrice;
-    const deliveryCharge = acc.price + value.discountedPrice > 500 ? 0 : 50;
+    const productPrice = value.qty * value.originalPrice;
+    const productDisconut =
+      value.qty * (value.originalPrice - value.discountedPrice);
+    const deliveryCharge =
+      acc.totalAmount + value.discountedPrice > 500 ? 0 : 50;
 
     return {
       ...acc,
       price: acc.price + productPrice,
-      discount: acc.discount + value.qty * productDisconut,
+      discount: acc.discount + productDisconut,
       deliveryCharge: deliveryCharge,
-      totalAmount: acc.price + productPrice + deliveryCharge,
+      totalAmount: acc.totalAmount + productPrice - productDisconut,
       moneySaved: acc.moneySaved + value.qty * productDisconut + deliveryCharge,
     };
   }, priceObject);
