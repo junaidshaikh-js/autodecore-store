@@ -11,10 +11,12 @@ export function NavButtons() {
 
   const {
     state: { productsInCart, productsInWishList },
+    dispatch: dataDispatch,
   } = useData();
 
   const {
     state: { userName, token },
+    handleLogout,
   } = useAuth();
 
   return (
@@ -31,6 +33,16 @@ export function NavButtons() {
             <Link to="/login">
               <BtnSecondary>login</BtnSecondary>
             </Link>
+          )}
+        </li>
+        <li>
+          {token && (
+            <BtnSecondary
+              cnames="hide-small mx-1"
+              onClick={() => handleLogout(dataDispatch)}
+            >
+              Logout
+            </BtnSecondary>
           )}
         </li>
         <li className="mr-sm">

@@ -67,6 +67,12 @@ export function dataReducer(state, { type, payload }) {
         ...state,
         productsInCart: payload,
       };
+    case "LOG_OUT":
+      return {
+        ...state,
+        productsInCart: [],
+        productsInWishList: [],
+      };
     default:
       throw new Error("Unhandled action type");
   }

@@ -1,6 +1,14 @@
 import { getValidated } from "./getValidated";
+import { signup } from "../../../utils";
 
-export function handleSignupSubmit(e, signupValues, setSignupErrors) {
+export function handleSignupSubmit(
+  e,
+  signupValues,
+  setSignupErrors,
+  setIsLoading,
+  dispatch,
+  navigate
+) {
   e.preventDefault();
 
   const { email, password, confirmPassword, firstName, lastName } =
@@ -15,8 +23,15 @@ export function handleSignupSubmit(e, signupValues, setSignupErrors) {
   );
 
   if (!Object.keys(errors).length) {
-    // TODO: make signup request
-    console.log("signing user");
+    signup(
+      email,
+      password,
+      firstName,
+      lastName,
+      dispatch,
+      setIsLoading,
+      navigate
+    );
   }
 
   setSignupErrors(errors);
