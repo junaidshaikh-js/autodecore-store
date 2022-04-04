@@ -113,13 +113,13 @@ export const signup = async (
   }
 };
 
-export async function toggleWishList(
+export const toggleWishList = async (
   dispatch,
   product,
   setIsUpdating,
   state,
   token
-) {
+) => {
   setIsUpdating(true);
   if (!isInList(state.productsInWishList, product._id)) {
     try {
@@ -147,15 +147,14 @@ export async function toggleWishList(
   } else {
     removeItemFromWishlist(dispatch, product, setIsUpdating, token);
   }
-}
+};
 
-export async function removeItemFromWishlist(
+export const removeItemFromWishlist = async (
   dispatch,
   product,
   setIsUpdating,
-
   token
-) {
+) => {
   try {
     const res = await axios({
       method: "delete",
@@ -181,7 +180,7 @@ export async function removeItemFromWishlist(
     setIsUpdating(false);
     throw new Error("can not be deleted from wishlist");
   }
-}
+};
 
 export const addItemToCart = async (
   dispatch,
@@ -218,12 +217,12 @@ export const addItemToCart = async (
   }
 };
 
-export async function removeItemFromCart(
+export const removeItemFromCart = async (
   dispatch,
   product,
   setIsUpdating,
   token
-) {
+) => {
   setIsUpdating(true);
   try {
     const res = await axios({
@@ -246,15 +245,15 @@ export async function removeItemFromCart(
   } catch (error) {
     throw new Error("Item can not be removed");
   }
-}
+};
 
-export async function saveToWishlist(
+export const saveToWishlist = async (
   dispatch,
   product,
   setIsUpdating,
   state,
   token
-) {
+) => {
   try {
     removeItemFromCart(dispatch, product, setIsUpdating, token);
 
@@ -264,16 +263,16 @@ export async function saveToWishlist(
   } catch (error) {
     throw new Error("Item can not be saved to wishlist");
   }
-}
+};
 
-export async function updateProductQuantity(
+export const updateProductQuantity = async (
   dispatch,
   product,
   setIsUpdating,
   state,
   token,
   type
-) {
+) => {
   setIsUpdating(true);
   if (product.qty >= product.avalQty && type == "increment") {
     alert(`Can not than ${product.avalQty}`);
@@ -309,16 +308,16 @@ export async function updateProductQuantity(
       setIsUpdating(false);
     }
   }
-}
+};
 
-export async function moveToCart(
+export const moveToCart = async (
   dispatch,
   product,
   setIsUpdating,
   state,
   token,
   navigate
-) {
+) => {
   try {
     if (!isInList(state.productsInCart, product._id)) {
       await addItemToCart(dispatch, product, setIsUpdating, state, token);
@@ -341,4 +340,4 @@ export async function moveToCart(
   } catch (error) {
     throw new Error("Can not be added to cart");
   }
-}
+};
