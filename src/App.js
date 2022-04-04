@@ -20,6 +20,7 @@ import {
   getCart,
 } from "./utils/server-requests";
 import { useData, useAuth } from "./context";
+import { PrivateRoute } from "./PrivateRoute";
 
 import "./style.css";
 
@@ -42,11 +43,27 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<Error404 />} />
+
+        {/* private routes */}
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <PrivateRoute>
+              <Wishlist />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </>
