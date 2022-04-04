@@ -11,7 +11,15 @@ const AuthContext = createContext(initialAuthState);
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialAuthState);
 
-  const value = { state, dispatch };
+  const handleLogout = (dataDispatch) => {
+    localStorage.clear();
+    dispatch({ type: "LOG_OUT", payload: { userName: null, token: null } });
+    dataDispatch({
+      type: "LOG_OUT",
+    });
+  };
+
+  const value = { state, dispatch, handleLogout };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

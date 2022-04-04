@@ -7,7 +7,7 @@ import "./header.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useFixBody } from "../../hooks";
-import { useAuth } from "../../context";
+import { useAuth, useData } from "../../context";
 
 import { BtnIcon } from "../buttons";
 
@@ -21,7 +21,10 @@ export function Header() {
 
   const {
     state: { userName, token },
+    handleLogout,
   } = useAuth();
+
+  const { dispatch: dataDispatch } = useData();
 
   return (
     <header>
@@ -76,6 +79,12 @@ export function Header() {
                 </Link>
               </li>
             </>
+          )}
+
+          {token && (
+            <li className="my-sm" onClick={() => handleLogout(dataDispatch)}>
+              <button className="btn">Logout</button>
+            </li>
           )}
 
           <li className="my-sm">

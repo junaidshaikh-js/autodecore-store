@@ -79,6 +79,40 @@ export const login = async (
   }
 };
 
+export const signup = async (
+  email,
+  password,
+  firstName,
+  lastName,
+  dispatch,
+  setIsLoading,
+  navigate
+) => {
+  try {
+    const res = await axios({
+      method: "post",
+      url: "/api/auth/signup",
+      data: {
+        email,
+        password,
+        firstName,
+        lastName,
+      },
+    });
+
+    if (res.status == 201) {
+      login(dispatch, email, password, setIsLoading, navigate);
+    }
+  } catch (error) {
+    if (error.response?.status == 422) {
+      // TODO: to be handle with toast later
+      console.log("You are already registerd. Please log in");
+    }
+
+    throw new Error("Can not sign up");
+  }
+};
+
 export async function toggleWishList(
   dispatch,
   product,

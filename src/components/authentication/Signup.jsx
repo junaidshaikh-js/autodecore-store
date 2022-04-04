@@ -1,14 +1,20 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BtnComplementary } from "../buttons";
 import { ErrorMessage } from "./ErrorMessage";
 import { ShowPasswordVisibility } from "./ShowPasswordVisibility";
 import { handleSignupSubmit } from "./utils/handle-signup-submit";
+import { InlineLoader } from "../loader";
+import { useAuth } from "../../context";
 
 export function Signup() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
+  const [loading, setIsLoading] = useState(false);
+
+  const { dispatch } = useAuth();
+  const navigate = useNavigate();
 
   const initialValues = {
     firstName: "",
@@ -166,10 +172,24 @@ export function Signup() {
                   cnames="signup-submit w-100 mt-1"
                   type="submit"
                   onClick={(e) =>
-                    handleSignupSubmit(e, singupValues, setSignupErrors)
+                    handleSignupSubmit(
+                      e,
+                      singupValues,
+                      setSignupErrors,
+                      setIsLoading,
+                      dispatch,
+                      navigate
+                    )
                   }
+                  disabled={loading}
                 >
-                  Create New Account
+                  {loading ? (
+                    <span>
+                      <InlineLoader /> Please Wait
+                    </span>
+                  ) : (
+                    "Create New Account"
+                  )}
                 </BtnComplementary>
               </form>
 
