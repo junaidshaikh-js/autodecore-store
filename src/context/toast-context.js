@@ -12,8 +12,6 @@ const ToastProvider = ({ children }) => {
   const [timerId, setTimerId] = useState(null);
 
   useEffect(() => {
-    clearTimeout(timerId);
-
     let id = setTimeout(() => {
       setToastMessage({
         type: "",
@@ -22,6 +20,10 @@ const ToastProvider = ({ children }) => {
     }, 3000);
 
     setTimerId(id);
+
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [toastMessage]);
 
   const value = { toastMessage, setToastMessage };
