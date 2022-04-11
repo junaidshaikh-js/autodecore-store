@@ -5,7 +5,7 @@ import { ProductHeader } from "./ProductHeader";
 import { BtnIcon } from "../buttons";
 import { ProductCardPrice } from "./ProductCardPrice";
 import { AddToCartBtn } from "./AddToCartBtn";
-import { useAuth, useData } from "../../context";
+import { useAuth, useData, useToast } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { isInList, toggleWishList } from "../../utils";
 
@@ -15,6 +15,7 @@ export function ProductCard({ product }) {
   const {
     state: { token },
   } = useAuth();
+  const { setToastMessage } = useToast();
   const navigate = useNavigate();
 
   return (
@@ -43,7 +44,14 @@ export function ProductCard({ product }) {
             cnames="btn icon-btn-primary btn-wishlist"
             onClick={() =>
               token
-                ? toggleWishList(dispatch, product, setIsUpdating, state, token)
+                ? toggleWishList(
+                    dispatch,
+                    product,
+                    setIsUpdating,
+                    state,
+                    token,
+                    setToastMessage
+                  )
                 : navigate("/login")
             }
             disabled={isUpdating}

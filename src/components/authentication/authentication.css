@@ -63,18 +63,6 @@
   right: 15px;
 }
 
-.login-error {
-  display: block;
-  margin: 0rem 0;
-  text-align: center;
-  color: red;
-  font-size: 1.3rem;
-  position: absolute;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .error {
   color: red;
   display: inline-block;

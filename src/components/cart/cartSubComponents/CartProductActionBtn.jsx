@@ -6,7 +6,7 @@ import {
   saveToWishlist,
   updateProductQuantity,
 } from "../../../utils";
-import { useAuth, useData } from "../../../context";
+import { useAuth, useData, useToast } from "../../../context";
 
 export function CartProductActionBtn({ product }) {
   const [isUpdating, setIsUpdating] = useState(false);
@@ -15,6 +15,7 @@ export function CartProductActionBtn({ product }) {
   const {
     state: { token },
   } = useAuth();
+  const { setToastMessage } = useToast();
 
   return (
     <section className="cart-product-actions w-100">
@@ -29,7 +30,8 @@ export function CartProductActionBtn({ product }) {
               setIsUpdating,
               state,
               token,
-              "decrement"
+              "decrement",
+              setToastMessage
             )
           }
         >
@@ -46,7 +48,7 @@ export function CartProductActionBtn({ product }) {
 
         <button
           className="btn increase-product-quantity"
-          disabled={isUpdating}
+          disabled={product.qty >= product.avalQty || isUpdating}
           onClick={() =>
             updateProductQuantity(
               dispatch,
@@ -54,7 +56,8 @@ export function CartProductActionBtn({ product }) {
               setIsUpdating,
               state,
               token,
-              "increment"
+              "increment",
+              setToastMessage
             )
           }
         >
@@ -67,7 +70,14 @@ export function CartProductActionBtn({ product }) {
           className="btn"
           disabled={isUpdating}
           onClick={() =>
-            saveToWishlist(dispatch, product, setIsUpdating, state, token)
+            saveToWishlist(
+              dispatch,
+              product,
+              setIsUpdating,
+              state,
+              token,
+              setToastMessage
+            )
           }
         >
           <FaHeart color="gray" />{" "}
@@ -78,7 +88,13 @@ export function CartProductActionBtn({ product }) {
           className="btn"
           disabled={isUpdating}
           onClick={() => {
-            removeItemFromCart(dispatch, product, setIsUpdating, token);
+            removeItemFromCart(
+              dispatch,
+              product,
+              setIsUpdating,
+              token,
+              setToastMessage
+            );
           }}
         >
           <FaTrash color="gray" /> <span className="ml-sm">Remove</span>

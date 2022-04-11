@@ -7,7 +7,8 @@ export function handleSignupSubmit(
   setSignupErrors,
   setIsLoading,
   dispatch,
-  navigate
+  navigate,
+  setToastMessage
 ) {
   e.preventDefault();
 
@@ -30,7 +31,8 @@ export function handleSignupSubmit(
       lastName,
       dispatch,
       setIsLoading,
-      navigate
+      navigate,
+      setToastMessage
     );
   }
 
