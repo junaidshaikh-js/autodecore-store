@@ -1,3 +1,15 @@
-export { DataProvider, useData } from "./data-context";
-export { AuthProvider, useAuth } from "./auth-context";
-export { ToastProvider, useToast } from "./toast-context";
+import { DataProvider, useData } from "./data-context";
+import { AuthProvider, useAuth } from "./auth-context";
+import { ToastProvider, useToast } from "./toast-context";
+
+const Provider = ({ children }) => {
+  return (
+    <ToastProvider>
+      <AuthProvider>
+        <DataProvider>{children}</DataProvider>
+      </AuthProvider>
+    </ToastProvider>
+  );
+};
+
+export { Provider, useData, useAuth, useToast };
