@@ -1,0 +1,30 @@
+.toast {
+  animation: show 0.3s linear;
+  background-color: hsl(0, 0%, 10%);
+  bottom: 20px;
+  padding: 1rem;
+  position: fixed;
+  width: 95vw;
+  max-width: fit-content;
+}
+
+.toast-success {
+  color: hsl(120, 97%, 38%);
+}
+
+.toast-error {
+  color: hsl(0, 100%, 50%);
+}
+
+.toast-info {
+  color: hsl(0, 0%, 96%);
+}
+
+@keyframes show {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

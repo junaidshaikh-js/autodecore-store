@@ -11,6 +11,7 @@ import {
   Signup,
   Footer,
   Error404,
+  Toast,
 } from "./components";
 
 import {
@@ -19,7 +20,7 @@ import {
   getWishList,
   getCart,
 } from "./utils/server-requests";
-import { useData, useAuth } from "./context";
+import { useData, useAuth, useToast } from "./context";
 import { PrivateRoute } from "./PrivateRoute";
 
 import "./style.css";
@@ -29,6 +30,9 @@ function App() {
   const {
     state: { token },
   } = useAuth();
+  const {
+    toastMessage: { type, message },
+  } = useToast();
 
   useEffect(() => {
     getProducts(dispatch);
@@ -66,6 +70,7 @@ function App() {
         />
       </Routes>
       <Footer />
+      <Toast type={type} message={message} />
     </>
   );
 }
