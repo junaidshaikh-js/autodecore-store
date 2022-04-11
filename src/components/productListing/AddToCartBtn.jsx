@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAuth, useData } from "../../context";
+import { useAuth, useData, useToast } from "../../context";
 import { isInList, addItemToCart } from "../../utils";
 import { InlineLoader } from "../loader";
 
@@ -12,6 +12,7 @@ export function AddToCartBtn({ product }) {
   } = useAuth();
 
   const { state, dispatch } = useData();
+  const { setToastMessage } = useToast();
 
   const navigate = useNavigate();
 
@@ -19,7 +20,14 @@ export function AddToCartBtn({ product }) {
     if (isInList(state.productsInCart, product._id))
       navigate("/cart", { replace: true });
     else {
-      addItemToCart(dispatch, product, setIsAddingToCart, state, token);
+      addItemToCart(
+        dispatch,
+        product,
+        setIsAddingToCart,
+        state,
+        token,
+        setToastMessage
+      );
     }
   }
 

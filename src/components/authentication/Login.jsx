@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
+import { useAuth, useToast } from "../../context";
 import { BtnComplementary, BtnPrimary } from "../buttons";
 import { login } from "../../utils";
 import { useNavigate } from "react-router-dom";
@@ -16,11 +16,11 @@ export function Login() {
     email: "",
     password: "",
   });
-  const [loginError, setLoginError] = useState("");
 
   const [loginFormErrors, setLoginFormErrors] = useState({});
 
   const { dispatch } = useAuth();
+  const { setToastMessage } = useToast();
   const navigate = useNavigate();
 
   const handleFormLogin = (e) => {
@@ -43,7 +43,7 @@ export function Login() {
         loginData.password,
         setIsLogging,
         navigate,
-        setLoginError
+        setToastMessage
       );
     }
   };
@@ -56,9 +56,6 @@ export function Login() {
   return (
     <div className="main-wrapper">
       <main>
-        {/* TODO: handle with toast  */}
-        <span className="login-error">{loginError}</span>
-
         <div className="login-form-wrapper flex flex-center">
           <article className="login flex mx-1">
             <div className="login__message p-1 flex-grow">
@@ -142,7 +139,7 @@ export function Login() {
                     testData.password,
                     setIsLogging,
                     navigate,
-                    setLoginError
+                    setToastMessage
                   )
                 }
                 disabled={logging}

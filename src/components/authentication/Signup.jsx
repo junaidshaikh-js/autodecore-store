@@ -5,7 +5,7 @@ import { ErrorMessage } from "./ErrorMessage";
 import { ShowPasswordVisibility } from "./ShowPasswordVisibility";
 import { handleSignupSubmit } from "./utils/handle-signup-submit";
 import { InlineLoader } from "../loader";
-import { useAuth } from "../../context";
+import { useAuth, useToast } from "../../context";
 
 export function Signup() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -14,6 +14,7 @@ export function Signup() {
   const [loading, setIsLoading] = useState(false);
 
   const { dispatch } = useAuth();
+  const { setToastMessage } = useToast();
   const navigate = useNavigate();
 
   const initialValues = {
@@ -178,7 +179,8 @@ export function Signup() {
                       setSignupErrors,
                       setIsLoading,
                       dispatch,
-                      navigate
+                      navigate,
+                      setToastMessage
                     )
                   }
                   disabled={loading}

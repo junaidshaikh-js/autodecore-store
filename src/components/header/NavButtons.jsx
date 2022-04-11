@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useAuth, useToast } from "../../context";
 
 import { useData } from "../../context";
 import { BtnSecondary } from "../buttons";
@@ -18,6 +18,8 @@ export function NavButtons() {
     state: { userName, token },
     handleLogout,
   } = useAuth();
+  const { setToastMessage } = useToast();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -39,7 +41,9 @@ export function NavButtons() {
           {token && (
             <BtnSecondary
               cnames="hide-small mx-1"
-              onClick={() => handleLogout(dataDispatch)}
+              onClick={() =>
+                handleLogout(dataDispatch, setToastMessage, navigate)
+              }
             >
               Logout
             </BtnSecondary>

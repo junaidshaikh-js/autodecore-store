@@ -5,7 +5,7 @@ import { ProductCardPrice } from "../productListing/ProductCardPrice";
 import { ProductHeader } from "../productListing/ProductHeader";
 import { BtnComplementary } from "../buttons";
 import { isInList, removeItemFromWishlist, moveToCart } from "../../utils";
-import { useAuth, useData } from "../../context";
+import { useAuth, useData, useToast } from "../../context";
 
 export function WishlistCard({ product }) {
   const [isUpdating, setIsUpdating] = useState(false);
@@ -13,6 +13,7 @@ export function WishlistCard({ product }) {
   const {
     state: { token },
   } = useAuth();
+  const { setToastMessage } = useToast();
 
   const navigate = useNavigate();
 
@@ -39,7 +40,15 @@ export function WishlistCard({ product }) {
         <BtnComplementary
           disabled={!product.inStock || isUpdating}
           onClick={() =>
-            moveToCart(dispatch, product, setIsUpdating, state, token, navigate)
+            moveToCart(
+              dispatch,
+              product,
+              setIsUpdating,
+              state,
+              token,
+              navigate,
+              setToastMessage
+            )
           }
         >
           {!product.inStock
@@ -56,7 +65,13 @@ export function WishlistCard({ product }) {
         className="btn wishlist-remove-btn"
         disabled={isUpdating}
         onClick={() =>
-          removeItemFromWishlist(dispatch, product, setIsUpdating, token)
+          removeItemFromWishlist(
+            dispatch,
+            product,
+            setIsUpdating,
+            token,
+            setToastMessage
+          )
         }
       >
         <i className="fas fa-trash"></i>

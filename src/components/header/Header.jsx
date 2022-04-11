@@ -4,10 +4,10 @@ import { SearchBox } from "./SearchBox";
 import { NavButtons } from "./NavButtons";
 
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useFixBody } from "../../hooks";
-import { useAuth, useData } from "../../context";
+import { useAuth, useData, useToast } from "../../context";
 
 import { BtnIcon } from "../buttons";
 
@@ -23,6 +23,8 @@ export function Header() {
     state: { userName, token },
     handleLogout,
   } = useAuth();
+  const { setToastMessage } = useToast();
+  const navigate = useNavigate();
 
   const { dispatch: dataDispatch } = useData();
 
@@ -82,7 +84,12 @@ export function Header() {
           )}
 
           {token && (
-            <li className="my-sm" onClick={() => handleLogout(dataDispatch)}>
+            <li
+              className="my-sm"
+              onClick={() =>
+                handleLogout(dataDispatch, setToastMessage, navigate)
+              }
+            >
               <button className="btn">Logout</button>
             </li>
           )}
