@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 const initialValue = {
   type: "",
@@ -9,22 +9,6 @@ const ToastContext = createContext(initialValue);
 
 const ToastProvider = ({ children }) => {
   const [toastMessage, setToastMessage] = useState(initialValue);
-  const [timerId, setTimerId] = useState(null);
-
-  useEffect(() => {
-    let id = setTimeout(() => {
-      setToastMessage({
-        type: "",
-        message: "",
-      });
-    }, 3000);
-
-    setTimerId(id);
-
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, [toastMessage]);
 
   const value = { toastMessage, setToastMessage };
 
