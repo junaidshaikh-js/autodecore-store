@@ -8,9 +8,14 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: uuid(),
+    productId: 1,
     name: "Auto Hub EVA 3D Mat For Maruti Suzuki Ertiga  (Beige)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648022375/3d-127-auto-hub-3d-premium-anti-slip-original-imae92vtzzzmfrqe_izdxhn.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650014492/AutoDecore/3d-102-auto-hub-3d-premium-anti-slip-original-imaehabumkzhhypu_hmnwoc.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650014523/AutoDecore/3d-102-auto-hub-3d-premium-anti-slip-original-imaehabumfnjhndm_luzmqi.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650014543/AutoDecore/car-foot-mats-auccf-210-2018-autyle-original-imaehabuvggqmnpz_uajqmq.webp",
+    ],
     rating: 3.5,
     shortDesc:
       "New 3-Dimension Design: Fits The Floor Perfectly With Raised Edge, Keep The Cars' Original Floor Carpet Clean.rich Leather Finish Which Gives Plush Look To The Car. Makes The Car Interior More Elegant And Dust Free.",
@@ -26,9 +31,12 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 2,
     name: "Auto Hub PVC (Polyvinyl Chloride) Standard Mat For Maruti Suzuki Swift (Green)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648022465/grass-noodle-mat-707-ah-707-auto-hub-original-imaessexhykzzwya_mkzinz.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650021607/AutoDecore/grass-noodle-mat-737-ah-737-auto-hub-original-imaessextdtc7thx_zpme9y.webp",
+    ],
     rating: 3.8,
     shortDesc:
       "Auto Hub premium Car Floor/Foot Grass Mats which will always make you feel fresh whenever you are up for a drive. One of the most unique car foot mats in the industry.",
@@ -44,9 +52,12 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 3,
     name: "INDROP Auto new i10 13 inch Wheel Cover (33.02 cm) Pack Of 4 Wheel Cover For Hyundai i10  (33 cm)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648022740/auto-new-i10-13-inch-wheel-cover-33-02-cm-pack-of-4-original-imafmtzdhhxmfymy_evjimq.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650021783/AutoDecore/15-inches-wheel-cover-for-38-1-cm-pack-of-4-treyh1432kj36-indrop-original-imafm8h4v4zzfq7u_usxzoe.webp",
+    ],
     rating: 4.8,
     shortDesc:
       "Auto Hub premium Car Floor/Foot Grass Mats which will always make you feel fresh whenever you are up for a drive. One of the most unique car foot mats in the industry.",
@@ -62,9 +73,13 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 4,
     name: "MRF ZVTV 165/70 R14 81S 4 Wheeler Tyre  (Tubeless Car Tyre, Tube Less)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648057349/zvtvcar-tyre-195-55-r16-87h-mrf-original-imafzspwhgyethct_kpccgo.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650021966/AutoDecore/zvtv-165-70-r14-81s-tubeless-car-tyre-mrf-original-imafpkzydhj4tnsn_whyakg.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650021993/AutoDecore/zvtv-165-70-r14-81s-tubeless-car-tyre-mrf-original-imafpkzyve9gszd5_keg9bl.webp",
+    ],
     rating: 4.5,
     shortDesc:
       "Multi-layered reinforced steel belt package with n-66 ply enhances performance in all terrains.",
@@ -80,9 +95,14 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 5,
     name: "BOSCH Universal Aquatak 125 Pressure Washer",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648057546/universal-aquatak-125-bosch-original-imafz79hhnrrfs5z_lu7wtq.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650022064/AutoDecore/universal-aquatak-125-bosch-original-imafz79htngwwdmb_nmyoql.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650022079/AutoDecore/easy-aquatak-110-bosch-original-imafz79hhze855tj_wx9dzv.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650022092/AutoDecore/universal-aquatak-130-bosch-original-imafz79hmhdb3nzw_stjcr1.webp",
+    ],
     rating: 4.2,
     shortDesc:
       "If you own your dream car and you want to keep it as good as new, then you need this Bosch Easy Aquatak 125 High-pressure Washer. This cleaning equipment features a 125 Bar Pump, a 3-in-1 Nozzle, and a High-pressure Hose for a clean and spotless car in no time.",
@@ -98,9 +118,14 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 6,
     name: "Auto Hub Foam Seat Cleaner Bristle Cleaner with Foam Vehicle Interior Cleaner  (650 ml)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648057710/650-bristle-cleaner-with-foam-auto-hub-original-imaes67gutsz2xy2_vnfgox.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650022135/AutoDecore/650-bristle-cleaner-with-foam-auto-hub-original-imafumtrz4zqdfaz_ebxwij.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650022175/AutoDecore/650-bristle-cleaner-with-foam-auto-hub-original-imafumtsvreeejp7_laqtgq.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650022189/AutoDecore/650-bristle-cleaner-with-foam-auto-hub-original-imafumtrrz6nh9hf_ugws47.webp",
+    ],
     rating: 3.8,
     shortDesc:
       "Foam conditioner-is a pure conditioned with enhanced uv protection. It offers unmatched surface protection, a pleasant new shine and is formulated using natural scents to restore the pleasant cover smell. Extreme Seat Cover cleaner and conditioner- for customers looking to clean cover that is just lightly dirty or dusty and condition at the same time.",
@@ -116,12 +141,17 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 7,
     name: "GoMechanic Atmosphere Lights Car LED Strip Light 4pcs 48 LED DC 12V Multicolor Music Car Interior Light LED Under Dash Lighting Kit with Sound Active Function and Wireless Remote Control Car Fancy Lights Car Fancy Lights  (Multicolor)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648058125/tb454771-atmosphere-lights-car-led-strip-light-4pcs-48-led-dc-original-imafyzbqqp9grtjf_ctwati.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650031094/AutoDecore/atmosphere-lights-car-led-strip-light-4pcs-48-led-dc-12v-original-imafzt7f96hvnv7q_fcabuq.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650031133/AutoDecore/atmosphere-lights-car-led-strip-light-4pcs-48-led-dc-12v-original-imafzt7fk9e8qmrj_rq1hrw.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650031148/AutoDecore/atmosphere-lights-car-led-strip-light-4pcs-48-led-dc-12v-original-imafzt7fzefzsugk_pw9fbo.webp",
+    ],
     rating: 4.2,
     shortDesc:
-      "Voltage: DC 12V; Wattage: 10W; Bulb Quantity: 4pcs 48 LEDs, 12 LED/ Light. Most buyers perhaps will not use the remote control correctly, pls notice that: 1. The remote control should point directly to the black receiver box and there is no obstacle between them; 2.",
+      "Voltage: DC 12V; Wattage: 10W; Bulb Quantity: 4pcs 48 LEDs, 12 LED/ Light. Most buyers perhaps will not use the remote control correctly, pls notice that: 1. The remote control should point directly to the black receiver box and there is no obstacle between them.",
     discountedPrice: 349,
     originalPrice: 999,
     discountPercent: 65,
@@ -134,9 +164,14 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 8,
     name: "AuTO ADDiCT Car LED Strip Light 4pcs 48 LED DC 12V Multicolor Music Car Interior Light LED Under Dash Lighting Kit with Sound Active Function and Wireless Remote Control Car Fancy Lights  (Multicolor)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648058330/car-led-strip-light-4pcs-48-led-dc-12v-multicolor-music-car-original-imafyqb77wucqxzk_wu1ync.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650031850/AutoDecore/car-led-strip-light-4pcs-48-led-dc-12v-multicolor-music-car-original-imafyqb8uwrpwsbs_h7qolg.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650031871/AutoDecore/car-led-strip-light-4pcs-48-led-dc-12v-multicolor-music-car-original-imafyqb9xhaj8var_spu5qu.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650031884/AutoDecore/car-led-strip-light-4pcs-48-led-dc-12v-multicolor-music-car-original-imafyqb9utfcbzfp_n5hirt.webp",
+    ],
     rating: 4.1,
     shortDesc:
       "Voltage: DC 12V; Wattage: 10W; Bulb Quantity: 4pcs 48 LEDs, 12 LED/ Light. Most buyers perhaps will not use the remote control correctly, pls notice that: 1. The remote control should point directly to the black receiver box and there is no obstacle between them; 2",
@@ -152,9 +187,14 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 9,
     name: "V VINTON Car Cover For Maruti Suzuki WagonR (With Mirror Pockets)  (Grey)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648058722/triple-stitched-ultra-surface-body-protection-drize-original-imafznfw9fgxuk9f_qruk1t.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650031971/AutoDecore/car-cover-with-triple-stitched-ultra-surface-body-protection-original-imafh6gh2az86cpu_qtpqu2.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650031990/AutoDecore/car-cover-with-triple-stitched-ultra-surface-body-protection-original-imafhrrshzektsnm_kuih1z.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032004/AutoDecore/rbkl-dr-6-drize-activa-original-imafzn3ykbxsyqqb_jnvqeu.webp",
+    ],
     rating: 4,
     shortDesc:
       "Premium Water Resistant material protects your vehicle against wet, humid and dusty climatic conditions. Triple Stitching Used which ensures high strength to the body cover. Elastic on base of Body Cover Buckle Belt Easy to fold. Hi-performance Smooth fabric naturally resists moisture, fungus and expels stale odor.",
@@ -170,9 +210,14 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 10,
     name: "Purpleheart Car Cover For Maruti Suzuki WagonR (With Mirror Pockets)  (Blue)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648059015/ppny321-purpleheart-original-imafzdq2uhdkqmya_v93oeh.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032045/AutoDecore/8944079621621-durable-white-and-blue-color-car-cover-with-mirror-original-imaexnfwmrzkdqaz_n7tmjn.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032063/AutoDecore/8944079621621-durable-white-and-blue-color-car-cover-with-mirror-original-imaexnfwhh4ykqga_t1phi5.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032074/AutoDecore/8944079621621-durable-white-and-blue-color-car-cover-with-mirror-original-imaexnfw8ghnskj3_h2cv8c.webp",
+    ],
     rating: 4,
     shortDesc: "",
     discountedPrice: 799,
@@ -187,9 +232,13 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 11,
     name: "MEGAKLEEN Microfiber Vehicle Washing Cloth  (Pack Of 4, 276 GSM)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648059202/4-pack-of-4-megakleen-original-imag6gfxwajxhbzn_oy53ya.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032132/AutoDecore/5-mfb0002pnp-megakleen-original-imag5rq5kkcrhryf_k4cygr.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032149/AutoDecore/5-mfb0002pnp-megakleen-original-imag5rq5ryrekwfw_sjp8ds.webp",
+    ],
     rating: 3.9,
     shortDesc:
       "Microfiber is entitled as the Most innovative Product. Its derived usage in cleaning equipment's has made it one of the most required product for the Hospitality industry. It contains more than 200,000 fibers per inch of fabric and can absorb more than seven times their weight in water, With millions of fibers, microfiber lifts and holds dirt, grease, grime, liquids and bacteria.",
@@ -205,9 +254,11 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 12,
     name: "3M IA260166342 Liquid Vehicle Glass Cleaner  (500 ml)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648059386/500-ia260166342-3m-original-imafbufxzytujjjr_drbnfp.jpg",
+    ],
     rating: 4.1,
     shortDesc:
       "Make sure the glass is cool and in the shade when you apply the cleaner. Try it on the inside and the outside surface for maximum sparkle.",
@@ -223,9 +274,14 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 13,
     name: "Kortex KTX-B5 Pressure Washer",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648059557/ktx-b5-kortex-original-imagbunnshvuf6uh_zsnteh.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032347/AutoDecore/ktx-b5-kortex-original-imagbunnhfqxfgrp_g5fcld.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032364/AutoDecore/ktx-b5d-kortex-original-imag6n8favgxt2nj_axbic6.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032379/AutoDecore/ktx-b5-kortex-original-imag9fr2shmhngay_b0ss55.webp",
+    ],
     rating: 4.1,
     shortDesc:
       "Kortex-B5 Portable High-Pressure Car Washer Cleaner comes with amazing build quality and is very easy to operate. It has an auto-cut off system, so the moment you release the trigger, the machine automatically stops. This Car washer high-pressure pump has 1800watts heavy duty domestic induction motor that operates on a 230v/50Hz Single phase power supply, and it comes with a flow rate of Max 10 LPM.",
@@ -241,9 +297,13 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 14,
     name: "Texum HPW-6X Pressure Washer",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648059806/hpw-6x-texum-original-imagbph5sgmkarey_dcfvvp.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032446/AutoDecore/bt1000hpw-btali-international-original-imagbfphfbgzxzz6_oacuff.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032465/AutoDecore/bt1000hpw-btali-international-original-imagbfphzu68zrgd_fz0u8g.webp",
+    ],
     rating: 3.2,
     shortDesc: "",
     discountedPrice: 7499,
@@ -258,9 +318,14 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 15,
     name: "OSRAM LEDAS101 Portable Car Air Purifier  (Black)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648059972/8-ledas101-5-0-23-osram-original-imag69nusmpucvv8_ndofc5.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032501/AutoDecore/8-ledas101-5-0-23-osram-original-imag69nutepkcgad_mefmk1.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032522/AutoDecore/8-ledas101-5-0-23-osram-original-imag69nua5mgqnbc_ujr0o3.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032532/AutoDecore/8-ledas101-5-0-23-osram-original-imag69nughfpmhzf_jqfv7u.webp",
+    ],
     rating: 3,
     shortDesc: "",
     discountedPrice: 4552,
@@ -275,9 +340,14 @@ export const products = [
   },
   {
     _id: uuid(),
+    productId: 16,
     name: "GoMechanic Neutron 4500 Handheld Super Suction Wet/Dry 4.5KPa Power Car Vacuum Cleaner with Anti-Bacterial Cleaning  (Black)",
-    image:
+    image: [
       "https://res.cloudinary.com/junaidshaikh/image/upload/v1648060163/neutron-4500-pa-high-quality-suction-gomechanic-original-imag3w3yqwu6bej4_kn7tqe.jpg",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032593/AutoDecore/-original-imagd3fhy6exsyj8_uq8st7.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032609/AutoDecore/neutron-4500-pa-high-quality-suction-gomechanic-original-imag3w3ya2ydjf3f_lh2unq.webp",
+      "https://res.cloudinary.com/junaidshaikh/image/upload/v1650032621/AutoDecore/neutron-4500-pa-high-quality-suction-gomechanic-original-imag3w3ybugyax8e_ijw6qn.webp",
+    ],
     rating: 3.9,
     shortDesc:
       "Keep your car clean and dust-free with the GoMechanic Neutron 4500 Car Vacuum Cleaner. It not only features a sleek and elegant design but is also designed to reach tricky areas and corners of your car while cleaning. The streamlined design of this car vacuum cleaner makes it compact and convenient to carry.",
