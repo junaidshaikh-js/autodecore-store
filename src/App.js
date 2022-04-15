@@ -12,6 +12,7 @@ import {
   Footer,
   Error404,
   Toast,
+  SingleProductPage,
 } from "./components";
 
 import {
@@ -47,6 +48,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
+        <Route path="/product/:id" element={<SingleProductPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<Error404 />} />
