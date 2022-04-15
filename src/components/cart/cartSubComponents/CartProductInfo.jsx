@@ -14,7 +14,7 @@ export function CartProductInfo({
   return (
     <div className="card-product-info flex flex-column">
       <div className="card-image mr-sm  align-self-center">
-        <img className="img-responsive" src={image} alt="product" />
+        <img className="img-responsive" src={image[0]} alt="product" />
       </div>
 
       <div className="card-body ml-sm">
