@@ -20,7 +20,7 @@ export function WishlistCard({ product }) {
   return (
     <>
       <div className="card-image">
-        <img className="img-responsive" src={product.image} alt="product" />
+        <img className="img-responsive" src={product.image[0]} alt="product" />
       </div>
 
       <div className="card-body mx-2">

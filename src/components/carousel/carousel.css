@@ -1,0 +1,35 @@
+.spotlight-image {
+  height: 250px;
+  margin-inline: auto;
+  max-width: 400px;
+}
+
+.spotlight-image img {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.img-small {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 400px;
+}
+
+.img-small img {
+  cursor: pointer;
+  height: 70px;
+  object-fit: contain;
+  width: 70px;
+}
+
+.img-small .active {
+  border: 1px solid var(--primary-color);
+  padding: 4px;
+}
+
+@media screen and (min-width: 48em) {
+  .spotlight-image {
+    height: 400px;
+  }
+}
