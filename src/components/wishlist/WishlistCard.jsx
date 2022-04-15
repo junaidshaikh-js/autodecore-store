@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ProductCardPrice } from "../productListing/ProductCardPrice";
 import { ProductHeader } from "../productListing/ProductHeader";
@@ -19,23 +19,30 @@ export function WishlistCard({ product }) {
 
   return (
     <>
-      <div className="card-image">
-        <img className="img-responsive" src={product.image[0]} alt="product" />
-      </div>
+      <Link to={`/product/${product.productId}`}>
+        <div className="card-image">
+          <img
+            className="img-responsive"
+            src={product.image[0]}
+            alt="product"
+          />
+        </div>
+      </Link>
 
       <div className="card-body mx-2">
-        <ProductHeader
-          name={product.name}
-          soldBy={product.soldBy}
-          rating={product.rating}
-        />
-
-        <ProductCardPrice
-          originalPrice={product.originalPrice}
-          discountPercent={product.discountPercent}
-          discountedPrice={product.discountedPrice}
-          cnames="flex align-center"
-        />
+        <Link to={`/product/${product.productId}`}>
+          <ProductHeader
+            name={product.name}
+            soldBy={product.soldBy}
+            rating={product.rating}
+          />
+          <ProductCardPrice
+            originalPrice={product.originalPrice}
+            discountPercent={product.discountPercent}
+            discountedPrice={product.discountedPrice}
+            cnames="flex align-center"
+          />
+        </Link>
 
         <BtnComplementary
           disabled={!product.inStock || isUpdating}
