@@ -49,7 +49,7 @@ export const SingleProductPage = () => {
         throw new Error("Single product fetch fail.");
       }
     })();
-  }, []);
+  }, [id]);
 
   return (
     <main className="mx-1 my-2">

@@ -4,7 +4,7 @@ import { SearchBox } from "./SearchBox";
 import { NavButtons } from "./NavButtons";
 
 import "./header.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useFixBody } from "../../hooks";
 import { useAuth, useData, useToast } from "../../context";
@@ -17,6 +17,7 @@ export function Header() {
   function toggleSideMenu() {
     setIsSideMenuOpen((s) => !s);
   }
+
   useFixBody(isSideMenuOpen);
 
   const {
@@ -25,11 +26,12 @@ export function Header() {
   } = useAuth();
   const { setToastMessage } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { dispatch: dataDispatch } = useData();
 
   return (
-    <header>
+    <header className="header">
       <div className="hy-header-wrapper">
         <nav className="hy-navbar px-sm pb-sm pt-1">
           <div className="hy-navbar-links-container  mb-sm">
@@ -47,7 +49,10 @@ export function Header() {
             </div>
             <NavButtons />
           </div>
-          <SearchBox />
+          {location.pathname == "/login" ||
+          location.pathname == "/signup" ? null : (
+            <SearchBox />
+          )}
         </nav>
       </div>
 
