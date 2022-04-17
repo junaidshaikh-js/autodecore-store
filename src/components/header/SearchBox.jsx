@@ -21,7 +21,7 @@ export function SearchBox() {
 
   const filteredProducts = products.filter((product) => {
     if (searchTerm) {
-      return product.name.toLowerCase().includes(searchTerm);
+      return product.name.toLowerCase().includes(searchTerm.toLowerCase());
     }
   });
 
