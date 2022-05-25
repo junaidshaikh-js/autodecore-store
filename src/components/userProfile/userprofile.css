@@ -10,6 +10,51 @@
   font-size: 1.1rem;
 }
 
+.address-tag {
+  background-color: var(--light-gray);
+}
+
+.address-box {
+  position: relative;
+  border-top: 1px solid var(--light-gray);
+  border-right: 1px solid var(--light-gray);
+  border-left: 1px solid var(--light-gray);
+}
+
+.address-box:first-of-type {
+  margin-top: 2rem;
+}
+
+.address-box:last-of-type {
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.address-menu-btn {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  font-size: 1.2rem;
+}
+
+.form-bg {
+  background-color: #f5faff;
+}
+
+.form-row :is(input, textarea, select):focus {
+  box-shadow: none;
+  outline: 2px solid var(--primary-color);
+}
+
+.address-main {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.address-user-detail {
+  flex-basis: 25%;
+  height: fit-content;
+}
+
 @media screen and (min-width: 769px) {
   .profile-component {
     align-self: flex-start;
