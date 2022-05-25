@@ -1,4 +1,5 @@
 import { useAuth } from "../../context";
+import { useEscape } from "../../hooks";
 import "./selectAddressModal.css";
 
 export const SelectAddressModal = ({
@@ -10,13 +11,18 @@ export const SelectAddressModal = ({
     state: { addresses },
   } = useAuth();
 
+  useEscape(setIsModalOpen);
+
   return (
-    <div className="modal-wrapper flex flex-center">
-      <article className="bg-white p-1">
+    <div
+      className="modal-wrapper flex flex-center"
+      onClick={() => setIsModalOpen(false)}
+    >
+      <article className="bg-white p-1" onClick={(e) => e.stopPropagation()}>
         {addresses.map(
-          ({ tag, name, address, city, state, pincode }, index) => {
+          ({ id, tag, name, address, city, state, pincode }, index) => {
             return (
-              <div className="flex align-center my-1">
+              <div className="flex align-center my-1" key={id}>
                 <input
                   type="radio"
                   className="address-radio-btn mr-1"
