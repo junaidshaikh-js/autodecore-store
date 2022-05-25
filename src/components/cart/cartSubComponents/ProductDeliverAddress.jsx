@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../../context";
 import { ReactPortal } from "../../ReactPortal/ReactPortal";
 import { SelectAddressModal } from "../../SelectAddressModal/SelectAddressModal";
@@ -11,29 +12,43 @@ export function ProductDeliverAddress() {
   } = useAuth();
 
   const [currentAddressIndex, setCurrentAddressIndex] = useState(0);
-  const currentAddress = addresses[currentAddressIndex];
+  const currentAddress = addresses[currentAddressIndex] || null;
 
   return (
     <div className="py-1 border-bottom-dotted flex align-center justify-between">
       <div>
-        <span>
+        <span className="txt-semibold">
           Deliver to:
-          <span className="txt-semibold">{` ${currentAddress.name}`}</span>
+          <span className="txt-semibold">{`${
+            currentAddress?.name ? currentAddress.name : ""
+          }`}</span>
         </span>
 
-        <address className="mt-1">
-          {currentAddress.address}, {currentAddress.city},{" "}
-          {currentAddress.state} - {currentAddress.pincode}
-        </address>
+        {currentAddress ? (
+          <address className="mt-1">
+            {currentAddress.address}, {currentAddress.city},{" "}
+            {currentAddress.state} - {currentAddress.pincode}
+          </address>
+        ) : (
+          " No address found"
+        )}
       </div>
 
       <div className="ml-2">
-        <button
-          className="btn btn-complementary-outline"
-          onClick={() => setIsModalOpen(true)}
-        >
-          Change
-        </button>
+        {currentAddress ? (
+          <button
+            className="btn btn-complementary-outline"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Change
+          </button>
+        ) : (
+          <Link to="/profile/addresses">
+            <button className="btn btn-complementary-outline">
+              Add address
+            </button>
+          </Link>
+        )}
       </div>
 
       {isModalOpen && (
