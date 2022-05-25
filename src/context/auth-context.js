@@ -4,6 +4,7 @@ import { authReducer } from "./auth-reducer";
 const initialAuthState = {
   userName: localStorage.getItem("userName"),
   token: localStorage.getItem("token"),
+  addresses: JSON.parse(localStorage.getItem("data"))?.addresses,
 };
 
 const AuthContext = createContext(initialAuthState);
