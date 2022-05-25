@@ -55,6 +55,16 @@
   height: fit-content;
 }
 
+@media screen and (min-width: 520px) {
+  .address-form .address-form-btns {
+    flex-direction: row;
+  }
+
+  .address-form .address-form-btns button {
+    flex-direction: row;
+    margin-right: 0.5rem;
+  }
+}
 @media screen and (min-width: 769px) {
   .profile-component {
     align-self: flex-start;
