@@ -1,4 +1,5 @@
 import axios from "axios";
+import { v4 as uuid } from "uuid";
 
 import { isInList, getProduct } from "./helper-function";
 
@@ -386,4 +387,54 @@ export const moveToCart = async (
   } catch (error) {
     throw new Error("Can not be added to cart");
   }
+};
+
+export const addAddress = (values, authDispatch, setToastmessage) => {
+  const newAddress = { id: uuid(), ...values };
+  authDispatch({ type: "ADD_ADDRESS", payload: newAddress });
+
+  let data = JSON.parse(localStorage.getItem("data"));
+  data = { ...data, addresses: [...data.addresses, newAddress] };
+  localStorage.setItem("data", JSON.stringify(data));
+
+  setToastmessage({ type: "success", message: "Address added" });
+};
+
+export const deleteAddress = (id, addresses, authDispatch, setToastMessage) => {
+  const updatedAddressList = addresses.filter((_address) => _address.id !== id);
+
+  authDispatch({ type: "DELETE_ADDRESS", payload: updatedAddressList });
+
+  let data = JSON.parse(localStorage.getItem("data"));
+  data = { ...data, addresses: updatedAddressList };
+  localStorage.setItem("data", JSON.stringify(data));
+
+  setToastMessage({ type: "success", message: "Address deleted" });
+};
+
+export const editAddress = (
+  id,
+  addresses,
+  authDispatch,
+  values,
+  setToastMessage,
+  setIsEditing
+) => {
+  const updatedAddressList = addresses.map((_address) => {
+    if (_address.id === id) {
+      return { ..._address, ...values };
+    }
+
+    return _address;
+  });
+
+  authDispatch({ type: "UPDATE_ADDRESS", payload: updatedAddressList });
+
+  let data = JSON.parse(localStorage.getItem("data"));
+  data = { ...data, addresses: updatedAddressList };
+  localStorage.setItem("data", JSON.stringify(data));
+
+  setToastMessage({ type: "success", message: "Address updated" });
+
+  setIsEditing({ index: -1 });
 };
