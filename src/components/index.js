@@ -7,3 +7,5 @@ export * from "./authentication";
 export * from "./footer";
 export * from "./buttons";
 export * from "./Error-404";
+export { Toast } from "./Toast/Toast";
+export { SingleProductPage } from "./singleProductPage/SingleProductPage";

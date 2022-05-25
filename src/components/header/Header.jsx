@@ -4,10 +4,10 @@ import { SearchBox } from "./SearchBox";
 import { NavButtons } from "./NavButtons";
 
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useFixBody } from "../../hooks";
-import { useAuth, useData } from "../../context";
+import { useAuth, useData, useToast } from "../../context";
 
 import { BtnIcon } from "../buttons";
 
@@ -17,17 +17,21 @@ export function Header() {
   function toggleSideMenu() {
     setIsSideMenuOpen((s) => !s);
   }
+
   useFixBody(isSideMenuOpen);
 
   const {
     state: { userName, token },
     handleLogout,
   } = useAuth();
+  const { setToastMessage } = useToast();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { dispatch: dataDispatch } = useData();
 
   return (
-    <header>
+    <header className="header">
       <div className="hy-header-wrapper">
         <nav className="hy-navbar px-sm pb-sm pt-1">
           <div className="hy-navbar-links-container  mb-sm">
@@ -45,7 +49,10 @@ export function Header() {
             </div>
             <NavButtons />
           </div>
-          <SearchBox />
+          {location.pathname == "/login" ||
+          location.pathname == "/signup" ? null : (
+            <SearchBox />
+          )}
         </nav>
       </div>
 
@@ -82,7 +89,12 @@ export function Header() {
           )}
 
           {token && (
-            <li className="my-sm" onClick={() => handleLogout(dataDispatch)}>
+            <li
+              className="my-sm"
+              onClick={() =>
+                handleLogout(dataDispatch, setToastMessage, navigate)
+              }
+            >
               <button className="btn">Logout</button>
             </li>
           )}

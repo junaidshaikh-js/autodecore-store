@@ -1,0 +1,28 @@
+.single-product-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-inline: auto;
+  max-width: 1200px;
+  min-height: 80vh;
+}
+
+.single-card-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  overflow: visible;
+}
+
+.single-product-section .btn-container > * {
+  margin-inline: 0.5rem;
+  width: 100%;
+}
+
+.single-product-section .discount-percent {
+  color: var(--green);
+}
+
+@media screen and (min-width: 48em) {
+  .single-product-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -48,7 +48,7 @@ export const login = async (
   password,
   setIsLoading,
   navigate,
-  setLoginError
+  setToastMessage
 ) => {
   setIsLoading(true);
   try {
@@ -67,11 +67,16 @@ export const login = async (
 
     setIsLoading(false);
     navigate("/");
+    setToastMessage({ type: "success", message: "Login Successful!" });
   } catch (error) {
+    console.log(error.response);
     if (error.response?.status == 404) {
-      setLoginError("You are not registered with us. Please sign up");
+      setToastMessage({
+        type: "info",
+        message: "You are not registered with us. Please sign up",
+      });
     } else {
-      setLoginError("Wrong password");
+      setToastMessage({ type: "error", message: "Inavid email or password." });
     }
 
     setIsLoading(false);
@@ -86,8 +91,10 @@ export const signup = async (
   lastName,
   dispatch,
   setIsLoading,
-  navigate
+  navigate,
+  setToastMessage
 ) => {
+  setIsLoading(true);
   try {
     const res = await axios({
       method: "post",
@@ -102,11 +109,18 @@ export const signup = async (
 
     if (res.status == 201) {
       login(dispatch, email, password, setIsLoading, navigate);
+
+      setIsLoading(false);
+
+      setToastMessage({ type: "success", message: "Signup Successful" });
     }
   } catch (error) {
+    setIsLoading(false);
     if (error.response?.status == 422) {
-      // TODO: to be handle with toast later
-      console.log("You are already registerd. Please log in");
+      setToastMessage({
+        type: "info",
+        message: "You are already registerd. Please log in",
+      });
     }
 
     throw new Error("Can not sign up");
@@ -118,7 +132,8 @@ export const toggleWishList = async (
   product,
   setIsUpdating,
   state,
-  token
+  token,
+  setToastMessage
 ) => {
   setIsUpdating(true);
   if (!isInList(state.productsInWishList, product._id)) {
@@ -141,11 +156,18 @@ export const toggleWishList = async (
         localStorage.setItem("data", JSON.stringify(data));
       }
       setIsUpdating(false);
+      setToastMessage({ type: "info", message: "Item added to wishlist" });
     } catch (error) {
       throw new Error("can not be added to wishlist");
     }
   } else {
-    removeItemFromWishlist(dispatch, product, setIsUpdating, token);
+    removeItemFromWishlist(
+      dispatch,
+      product,
+      setIsUpdating,
+      token,
+      setToastMessage
+    );
   }
 };
 
@@ -153,7 +175,8 @@ export const removeItemFromWishlist = async (
   dispatch,
   product,
   setIsUpdating,
-  token
+  token,
+  setToastMessage
 ) => {
   try {
     const res = await axios({
@@ -176,6 +199,7 @@ export const removeItemFromWishlist = async (
     }
 
     setIsUpdating(false);
+    setToastMessage({ type: "info", message: "Item removed from wishlist" });
   } catch (error) {
     setIsUpdating(false);
     throw new Error("can not be deleted from wishlist");
@@ -187,7 +211,8 @@ export const addItemToCart = async (
   product,
   setIsUpdating,
   state,
-  token
+  token,
+  setToastMessage
 ) => {
   try {
     setIsUpdating(true);
@@ -211,8 +236,11 @@ export const addItemToCart = async (
       data = { ...data, cart: [...data.cart, product] };
       localStorage.setItem("data", JSON.stringify(data));
     }
+
+    setToastMessage({ type: "info", message: "Item added to cart" });
     setIsUpdating(false);
   } catch (error) {
+    setIsUpdating(false);
     throw new Error("failed! try again");
   }
 };
@@ -221,7 +249,8 @@ export const removeItemFromCart = async (
   dispatch,
   product,
   setIsUpdating,
-  token
+  token,
+  setToastMessage
 ) => {
   setIsUpdating(true);
   try {
@@ -242,6 +271,8 @@ export const removeItemFromCart = async (
     localStorage.setItem("data", JSON.stringify(data));
 
     setIsUpdating(false);
+
+    setToastMessage({ type: "info", message: "Item is removed from cart." });
   } catch (error) {
     throw new Error("Item can not be removed");
   }
@@ -252,7 +283,8 @@ export const saveToWishlist = async (
   product,
   setIsUpdating,
   state,
-  token
+  token,
+  setToastMessage
 ) => {
   try {
     removeItemFromCart(dispatch, product, setIsUpdating, token);
@@ -260,6 +292,8 @@ export const saveToWishlist = async (
     if (!isInList(state.productsInWishList, product._id)) {
       toggleWishList(dispatch, product, setIsUpdating, state, token);
     }
+
+    setToastMessage({ type: "info", message: "Item is saved to wishlist" });
   } catch (error) {
     throw new Error("Item can not be saved to wishlist");
   }
@@ -271,42 +305,46 @@ export const updateProductQuantity = async (
   setIsUpdating,
   state,
   token,
-  type
+  type,
+  setToastMessage
 ) => {
   setIsUpdating(true);
-  if (product.qty >= product.avalQty && type == "increment") {
-    alert(`Can not than ${product.avalQty}`);
-    setIsUpdating(false);
-  } else {
-    try {
-      const res = await axios({
-        method: "post",
-        url: `/api/user/cart/${product._id}`,
-        data: {
-          action: {
-            type,
-          },
+
+  try {
+    const res = await axios({
+      method: "post",
+      url: `/api/user/cart/${product._id}`,
+      data: {
+        action: {
+          type,
         },
-        headers: {
-          authorization: token,
-        },
+      },
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status == 200 || res.status == 201) {
+      dispatch({
+        type: "UPDATE_CART_QUANTITY",
+        payload: res.data.cart,
       });
-
-      if (res.status == 200 || res.status == 201) {
-        dispatch({
-          type: "UPDATE_CART_QUANTITY",
-          payload: res.data.cart,
-        });
-      }
-
-      let data = JSON.parse(localStorage.getItem("data"));
-      data = { ...data, cart: res.data.cart };
-      localStorage.setItem("data", JSON.stringify(data));
-
-      setIsUpdating(false);
-    } catch (error) {
-      setIsUpdating(false);
     }
+
+    let data = JSON.parse(localStorage.getItem("data"));
+    data = { ...data, cart: res.data.cart };
+    localStorage.setItem("data", JSON.stringify(data));
+
+    setIsUpdating(false);
+
+    setToastMessage({
+      type: "info",
+      message: `Product count update to  ${
+        type == "increment" ? product.qty + 1 : product.qty - 1
+      }`,
+    });
+  } catch (error) {
+    setIsUpdating(false);
   }
 };
 
@@ -316,11 +354,19 @@ export const moveToCart = async (
   setIsUpdating,
   state,
   token,
-  navigate
+  navigate,
+  setToastMessage
 ) => {
   try {
     if (!isInList(state.productsInCart, product._id)) {
-      await addItemToCart(dispatch, product, setIsUpdating, state, token);
+      await addItemToCart(
+        dispatch,
+        product,
+        setIsUpdating,
+        state,
+        token,
+        setToastMessage
+      );
     } else {
       const cartProduct = getProduct(state.productsInCart, product._id);
 

@@ -11,6 +11,8 @@ import {
   Signup,
   Footer,
   Error404,
+  Toast,
+  SingleProductPage,
 } from "./components";
 
 import {
@@ -19,7 +21,7 @@ import {
   getWishList,
   getCart,
 } from "./utils/server-requests";
-import { useData, useAuth } from "./context";
+import { useData, useAuth, useToast } from "./context";
 import { PrivateRoute } from "./PrivateRoute";
 
 import "./style.css";
@@ -29,6 +31,9 @@ function App() {
   const {
     state: { token },
   } = useAuth();
+  const {
+    toastMessage: { type, message },
+  } = useToast();
 
   useEffect(() => {
     getProducts(dispatch);
@@ -43,6 +48,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
+        <Route path="/product/:id" element={<SingleProductPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<Error404 />} />
@@ -66,6 +72,7 @@ function App() {
         />
       </Routes>
       <Footer />
+      <Toast type={type} message={message} />
     </>
   );
 }
