@@ -89,6 +89,14 @@ export function Header() {
           )}
 
           {token && (
+            <li className="my-sm">
+              <Link to="/profile">
+                <button className="btn">My Profile</button>
+              </Link>
+            </li>
+          )}
+
+          {token && (
             <li
               className="my-sm"
               onClick={() =>
@@ -98,10 +106,6 @@ export function Header() {
               <button className="btn">Logout</button>
             </li>
           )}
-
-          <li className="my-sm">
-            <button className="btn">Settings</button>
-          </li>
         </ul>
       </div>
     </header>
