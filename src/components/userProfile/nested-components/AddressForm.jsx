@@ -43,13 +43,30 @@ export function AddressForm({
   onCancleClick,
   handleSubmit,
   isEditing,
+  setFormValues,
 }) {
+  const handleFillDummyValues = () => {
+    setFormValues((f) => ({
+      ...f,
+      name: "Abhishek Sharma",
+      mobileNo: "02228513253",
+      pincode: "400072",
+      address: "No.2, S D Road",
+      city: "Hyderabad",
+      state: "Andhra Pradesh",
+      tag: "Work",
+    }));
+  };
+
   return (
     <section className="form-bg p-1 my-1">
       <p className="h5 color-primary p-1">
         {isEditing ? "EDIT ADDRESSS" : "ADD A NEW ADDRESS"}
       </p>
-      <form className="px-sm" onSubmit={(e) => handleSubmit(e, values)}>
+      <form
+        className="address-form px-sm"
+        onSubmit={(e) => handleSubmit(e, values)}
+      >
         <div className="form-row">
           <HiddenLabel forValue="name" label="Name" />
           <FormInputField
@@ -145,17 +162,27 @@ export function AddressForm({
           </select>
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Save
-        </button>
-
-        <button
-          type="button"
-          className="btn ml-1"
-          onClick={() => onCancleClick({ index: -1 })}
-        >
-          Cancel
-        </button>
+        <div className="flex flex-column address-form-btns">
+          <button type="submit" className="btn btn-primary my-sm">
+            Save
+          </button>
+          {!isEditing && (
+            <button
+              className="btn btn-complementary my-sm"
+              type="button"
+              onClick={handleFillDummyValues}
+            >
+              Fill Dummy Values
+            </button>
+          )}
+          <button
+            type="button"
+            className="btn my-sm"
+            onClick={() => onCancleClick({ index: -1 })}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </section>
   );

@@ -60,6 +60,7 @@ export const Addresses = () => {
             handleChange={handleChange}
             values={formValues}
             handleSubmit={handleSubmit}
+            setFormValues={setFormValues}
           />
         ) : (
           <button
