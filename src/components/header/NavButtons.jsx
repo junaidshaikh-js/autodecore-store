@@ -39,14 +39,9 @@ export function NavButtons() {
         </li>
         <li>
           {token && (
-            <BtnSecondary
-              cnames="hide-small mx-1"
-              onClick={() =>
-                handleLogout(dataDispatch, setToastMessage, navigate)
-              }
-            >
-              Logout
-            </BtnSecondary>
+            <Link to="/profile">
+              <BtnSecondary cnames="hide-small mx-1">My Profile</BtnSecondary>
+            </Link>
           )}
         </li>
         <li className="mr-sm">

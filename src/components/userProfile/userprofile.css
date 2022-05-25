@@ -1,0 +1,17 @@
+.active-navlink {
+  background-color: hsl(208, 100%, 97%);
+  color: var(--primary-color);
+}
+
+.profile-nav li a {
+  width: 100%;
+  padding: 0.5rem;
+  display: inline-block;
+  font-size: 1.1rem;
+}
+
+@media screen and (min-width: 769px) {
+  .profile-component {
+    align-self: flex-start;
+  }
+}

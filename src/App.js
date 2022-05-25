@@ -13,6 +13,10 @@ import {
   Error404,
   Toast,
   SingleProductPage,
+  UserProfile,
+  PersonalInfo,
+  Addresses,
+  Orders,
 } from "./components";
 
 import {
@@ -70,6 +74,12 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        <Route path="/profile" element={<UserProfile />}>
+          <Route path="/profile" element={<PersonalInfo />} />
+          <Route path="/profile/addresses" element={<Addresses />} />
+          <Route path="/profile/orders" element={<Orders />} />
+        </Route>
       </Routes>
       <Footer />
       <Toast type={type} message={message} />
