@@ -6,7 +6,7 @@ export * from "./wishlist";
 export * from "./authentication";
 export * from "./footer";
 export * from "./buttons";
-export * from "./error-404";
+export * from "./error-404/Error404";
 export * from "./singleProductPage/SingleProductPage";
 export * from "./userProfile";
 export * from "./orderSummary/OrderSummary";
