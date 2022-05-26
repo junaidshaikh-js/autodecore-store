@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useData } from "../../../context";
-import { OrderCard } from "../../OrderSummary/OrderCard";
+import { OrderCard } from "../../orderSummary/OrderCard";
 
 export const Orders = () => {
   const {
