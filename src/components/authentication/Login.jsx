@@ -23,7 +23,8 @@ export function Login() {
   const { setToastMessage } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.pathname || "/";
+  const from = location.state?.location?.pathname || "/";
+  console.log(location);
 
   const handleFormLogin = (e) => {
     const { value, id: key } = e.target;

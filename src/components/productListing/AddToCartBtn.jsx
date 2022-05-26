@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { useAuth, useData, useToast } from "../../context";
 import { isInList, addItemToCart } from "../../utils";
@@ -15,6 +15,7 @@ export function AddToCartBtn({ product }) {
   const { setToastMessage } = useToast();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleAddToCart(product) {
     if (isInList(state.productsInCart, product._id))
@@ -36,7 +37,9 @@ export function AddToCartBtn({ product }) {
       className="w-100 btn-addtocart btn btn-complementary"
       disabled={product.inStock || isAddingToCart ? false : true}
       onClick={() => {
-        token ? handleAddToCart(product) : navigate("/login");
+        token
+          ? handleAddToCart(product)
+          : navigate("/login", { state: { location } });
       }}
     >
       {!product.inStock ? (

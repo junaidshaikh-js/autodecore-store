@@ -1,12 +1,11 @@
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BsCalendar2CheckFill, BsCalendarXFill } from "react-icons/bs";
 
 import { useAuth, useData, useToast } from "../../context";
 import { Loader } from "../loader";
 import { Carousel } from "../carousel/Carousel";
-import { ProductHeader } from "../productListing/ProductHeader";
 import { ProductCardPrice } from "../productListing/ProductCardPrice";
 import { AddToCartBtn } from "../productListing/AddToCartBtn";
 import { toggleWishList, isInList } from "../../utils";
@@ -27,6 +26,8 @@ export const SingleProductPage = () => {
   const { state, dispatch } = useData();
 
   const { setToastMessage } = useToast();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -111,7 +112,7 @@ export const SingleProductPage = () => {
                         token,
                         setToastMessage
                       )
-                    : navigate("/login")
+                    : navigate("/login", { state: { location } })
                 }
                 disabled={isUpdating}
               >

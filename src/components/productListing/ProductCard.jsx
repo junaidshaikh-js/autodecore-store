@@ -1,6 +1,6 @@
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { ProductHeader } from "./ProductHeader";
 import { BtnIcon } from "../buttons";
@@ -18,6 +18,7 @@ export function ProductCard({ product }) {
   } = useAuth();
   const { setToastMessage } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <article className="card card-vertical p-1 border-m product-card card-icon">
@@ -60,7 +61,7 @@ export function ProductCard({ product }) {
                     token,
                     setToastMessage
                   )
-                : navigate("/login")
+                : navigate("/login", { state: { location } })
             }
             disabled={isUpdating}
           >
