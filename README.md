@@ -19,6 +19,12 @@
   - Availability
 - Wishlist management
 - Cart Management
+- Search Products
+- Single Product Page
+- User Profile Page
+- Address Management 
+- Orders page 
+- Payment Integration 
 
 ---
 
