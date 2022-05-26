@@ -24,7 +24,6 @@ export function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.location?.pathname || "/";
-  console.log(location);
 
   const handleFormLogin = (e) => {
     const { value, id: key } = e.target;
@@ -53,8 +52,8 @@ export function Login() {
   };
 
   const testData = {
-    email: "adarshbalika@gmail.com",
-    password: "adarshbalika",
+    email: "sj.shaikhjunaid@gmail.com",
+    password: "junaidshaikh",
   };
 
   return (
