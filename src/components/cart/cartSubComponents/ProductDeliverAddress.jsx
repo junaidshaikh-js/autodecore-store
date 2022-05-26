@@ -1,18 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../context";
 import { ReactPortal } from "../../ReactPortal/ReactPortal";
 import { SelectAddressModal } from "../../SelectAddressModal/SelectAddressModal";
 
-export function ProductDeliverAddress() {
+export function ProductDeliverAddress({
+  currentAddressIndex,
+  currentAddress,
+  setCurrentAddressIndex,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const {
-    state: { addresses },
-  } = useAuth();
-
-  const [currentAddressIndex, setCurrentAddressIndex] = useState(0);
-  const currentAddress = addresses[currentAddressIndex] || null;
 
   return (
     <div className="py-1 border-bottom-dotted flex align-center justify-between">
