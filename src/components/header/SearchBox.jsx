@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useData } from "../../context";
-import { SearchList } from "../searchList/SearchList";
+import { SearchList } from "../SearchList/SearchList";
 
 export function SearchBox() {
   const [searchTerm, setSearchTerm] = useState("");

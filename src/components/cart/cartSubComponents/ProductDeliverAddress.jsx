@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ReactPortal } from "../../reactPortal/ReactPortal";
-import { SelectAddressModal } from "../../selectAddressModal/SelectAddressModal";
+import { ReactPortal } from "../../ReactPortal/ReactPortal";
+import { SelectAddressModal } from "../../SelectAddressModal/SelectAddressModal";
 
 export function ProductDeliverAddress({
   currentAddressIndex,
