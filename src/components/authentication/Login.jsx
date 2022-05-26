@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth, useToast } from "../../context";
 import { BtnComplementary, BtnPrimary } from "../buttons";
 import { login } from "../../utils";
@@ -22,6 +22,8 @@ export function Login() {
   const { dispatch } = useAuth();
   const { setToastMessage } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.pathname || "/";
 
   const handleFormLogin = (e) => {
     const { value, id: key } = e.target;
@@ -43,7 +45,8 @@ export function Login() {
         loginData.password,
         setIsLogging,
         navigate,
-        setToastMessage
+        setToastMessage,
+        from
       );
     }
   };
@@ -139,7 +142,8 @@ export function Login() {
                     testData.password,
                     setIsLogging,
                     navigate,
-                    setToastMessage
+                    setToastMessage,
+                    from
                   )
                 }
                 disabled={logging}
