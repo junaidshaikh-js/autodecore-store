@@ -17,6 +17,7 @@ import {
   PersonalInfo,
   Addresses,
   Orders,
+  OrderSummary,
 } from "./components";
 
 import {
@@ -80,6 +81,15 @@ function App() {
           <Route path="/profile/addresses" element={<Addresses />} />
           <Route path="/profile/orders" element={<Orders />} />
         </Route>
+
+        <Route
+          path="/order-summary"
+          element={
+            <PrivateRoute>
+              <OrderSummary />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
       <Toast type={type} message={message} />
