@@ -19,7 +19,7 @@ export function CartProductInfo({
         to={`/product/${productId}`}
         className="card-product-info flex flex-column"
       >
-        <div className="card-image mr-sm  align-self-center">
+        <div className="card-image mr-sm  align-self-center txt-center">
           <img className="img-responsive" src={image[0]} alt="product" />
         </div>
         <div className="card-body ml-sm">
