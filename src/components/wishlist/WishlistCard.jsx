@@ -20,7 +20,7 @@ export function WishlistCard({ product }) {
   return (
     <>
       <Link to={`/product/${product.productId}`}>
-        <div className="card-image">
+        <div className="card-image txt-center">
           <img
             className="img-responsive"
             src={product.image[0]}

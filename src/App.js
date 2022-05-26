@@ -18,6 +18,7 @@ import {
   Addresses,
   Orders,
   OrderSummary,
+  ScrollToTop,
 } from "./components";
 
 import {
@@ -50,6 +51,7 @@ function App() {
   return (
     <>
       <Header />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
