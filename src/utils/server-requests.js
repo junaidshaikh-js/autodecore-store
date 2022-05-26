@@ -438,3 +438,23 @@ export const editAddress = (
 
   setIsEditing({ index: -1 });
 };
+
+export const emptyCart = async (token, dataDispatch) => {
+  try {
+    const res = await axios.delete("/api/user/cart", {
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status == 200 || res.status == 201) {
+      dataDispatch({ type: "EMPTY_CART", payload: res.data.cart });
+    }
+
+    let data = JSON.parse(localStorage.getItem("data"));
+    data = { ...data, cart: res.data.cart };
+    localStorage.setItem("data", JSON.stringify(data));
+  } catch (error) {
+    console.log(error, error.response);
+  }
+};

@@ -6,6 +6,7 @@ const DataContext = createContext({});
 
 const initialState = {
   products: [],
+  orders: [],
   categories: [],
   productsInCart: [],
   productsInWishList: [],

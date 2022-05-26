@@ -14,8 +14,11 @@ export function CartProductInfo({
   },
 }) {
   return (
-    <Link to={`/product/${productId}`}>
-      <div className="card-product-info flex flex-column">
+    <div className="w-100">
+      <Link
+        to={`/product/${productId}`}
+        className="card-product-info flex flex-column"
+      >
         <div className="card-image mr-sm  align-self-center">
           <img className="img-responsive" src={image[0]} alt="product" />
         </div>
@@ -27,7 +30,7 @@ export function CartProductInfo({
             discountPercent={discountPercent}
           />
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
