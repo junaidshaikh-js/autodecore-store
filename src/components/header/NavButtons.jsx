@@ -46,7 +46,7 @@ export function NavButtons() {
         </li>
         <li className="mr-sm">
           {
-            <Link to={token ? "/wishlist" : "/login"}>
+            <Link to="/wishlist">
               <span>
                 <div className="btn btn-icon btn-icon-md badge-container">
                   <i
@@ -68,7 +68,7 @@ export function NavButtons() {
         </li>
 
         <li>
-          <Link to={token ? "/cart" : "/login"}>
+          <Link to="/cart">
             <div className="btn btn-icon btn-icon-md badge-container">
               <i className="fas fa-shopping-cart" title="Shopping Cart"></i>
               {productsInCart.length ? (

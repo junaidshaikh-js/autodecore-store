@@ -49,7 +49,8 @@ export const login = async (
   password,
   setIsLoading,
   navigate,
-  setToastMessage
+  setToastMessage,
+  from
 ) => {
   setIsLoading(true);
   try {
@@ -67,7 +68,7 @@ export const login = async (
     }
 
     setIsLoading(false);
-    navigate("/");
+    navigate(from);
     setToastMessage({ type: "success", message: "Login Successful!" });
   } catch (error) {
     console.log(error.response);
