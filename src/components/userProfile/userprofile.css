@@ -55,6 +55,11 @@
   height: fit-content;
 }
 
+.profile-component .order-card:not(:last-child) {
+  border-bottom: 2px solid var(--gray);
+  margin-bottom: 2rem;
+}
+
 @media screen and (min-width: 520px) {
   .address-form .address-form-btns {
     flex-direction: row;
