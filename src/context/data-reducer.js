@@ -63,6 +63,7 @@ export function dataReducer(state, { type, payload }) {
       };
     case "REMOVE_ITEM_FROM_CART":
     case "UPDATE_CART_QUANTITY":
+    case "EMPTY_CART":
       return {
         ...state,
         productsInCart: payload,
@@ -72,6 +73,11 @@ export function dataReducer(state, { type, payload }) {
         ...state,
         productsInCart: [],
         productsInWishList: [],
+      };
+    case "SET_ORDERS":
+      return {
+        ...state,
+        orders: [...state.orders, payload],
       };
     default:
       throw new Error("Unhandled action type");
