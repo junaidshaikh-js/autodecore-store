@@ -18,7 +18,10 @@ export const SelectAddressModal = ({
       className="modal-wrapper flex flex-center"
       onClick={() => setIsModalOpen(false)}
     >
-      <article className="bg-white p-1" onClick={(e) => e.stopPropagation()}>
+      <article
+        className="bg-white p-1 mx-1"
+        onClick={(e) => e.stopPropagation()}
+      >
         {addresses.map(
           ({ id, tag, name, address, city, state, pincode }, index) => {
             return (
