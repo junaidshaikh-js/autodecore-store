@@ -1,4 +1,5 @@
-import { useData } from "../../context";
+import { useState } from "react";
+import { useData, useAuth } from "../../context";
 import { EmptyCart } from "./EmptyCart";
 import { CartDetails, CartPriceDetails } from "./cartSubComponents";
 
@@ -9,6 +10,13 @@ export function Cart() {
     state: { productsInCart },
   } = useData();
 
+  const {
+    state: { addresses },
+  } = useAuth();
+
+  const [currentAddressIndex, setCurrentAddressIndex] = useState(0);
+  const currentAddress = addresses[currentAddressIndex] || null;
+
   return (
     <>
       {!productsInCart.length ? (
@@ -16,8 +24,12 @@ export function Cart() {
       ) : (
         <main className="cart-main mt-1">
           <div className="cart-container flex flex-column">
-            <CartDetails />
-            <CartPriceDetails />
+            <CartDetails
+              currentAddressIndex={currentAddressIndex}
+              currentAddress={currentAddress}
+              setCurrentAddressIndex={setCurrentAddressIndex}
+            />
+            <CartPriceDetails currentAddress={currentAddress} />
           </div>
         </main>
       )}

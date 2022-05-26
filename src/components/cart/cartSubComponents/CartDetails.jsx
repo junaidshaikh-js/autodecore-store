@@ -2,7 +2,11 @@ import { useData } from "../../../context";
 import { ProductDeliverAddress } from "./ProductDeliverAddress";
 import { CartProduct } from "./CartProduct";
 
-export function CartDetails() {
+export function CartDetails({
+  currentAddressIndex,
+  currentAddress,
+  setCurrentAddressIndex,
+}) {
   const {
     state: { productsInCart },
   } = useData();
@@ -13,7 +17,11 @@ export function CartDetails() {
         My Cart <span>({productsInCart.length})</span>
       </h1>
 
-      <ProductDeliverAddress />
+      <ProductDeliverAddress
+        currentAddressIndex={currentAddressIndex}
+        currentAddress={currentAddress}
+        setCurrentAddressIndex={setCurrentAddressIndex}
+      />
 
       {productsInCart.map((product) => (
         <CartProduct product={product} key={product._id} />
