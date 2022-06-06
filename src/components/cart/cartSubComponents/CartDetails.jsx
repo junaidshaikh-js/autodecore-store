@@ -1,6 +1,7 @@
 import { useData } from "../../../context";
 import { ProductDeliverAddress } from "./ProductDeliverAddress";
-import { CartProduct } from "./CartProduct";
+import { CartProductInfo } from "./CartProductInfo";
+import { CartProductActionBtn } from "./CartProductActionBtn";
 
 export function CartDetails({
   currentAddressIndex,
@@ -24,7 +25,13 @@ export function CartDetails({
       />
 
       {productsInCart.map((product) => (
-        <CartProduct product={product} key={product._id} />
+        <article
+          className="card card-horizontal py-1 justify-start"
+          key={product.id}
+        >
+          <CartProductInfo product={product} />
+          <CartProductActionBtn product={product} />
+        </article>
       ))}
     </section>
   );
