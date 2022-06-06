@@ -38,6 +38,14 @@ export const Addresses = () => {
   function handleSubmit(e, values) {
     e.preventDefault();
 
+    if (values.pincode.length > 6) {
+      setToastMessage({
+        type: "error",
+        message: "pincode should be 6 character long",
+      });
+      return;
+    }
+
     addAddress(values, authDispatch, setToastMessage);
 
     setNewAddress(false);

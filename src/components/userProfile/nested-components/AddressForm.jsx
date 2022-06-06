@@ -88,18 +88,20 @@ export function AddressForm({
             name="mobileNo"
             handleChange={handleChange}
             value={values.mobileNo}
+            maxLength="10"
           />
         </div>
 
         <div className="form-row">
           <HiddenLabel forValue="pincode" label="Pincode" />
           <FormInputField
-            type="text"
+            type="number"
             placeholder="Pincode"
             id="pincode"
             name="pincode"
             handleChange={handleChange}
             value={values.pincode}
+            maxLength="6"
           />
         </div>
 
@@ -196,7 +198,15 @@ function HiddenLabel({ forValue, label }) {
   );
 }
 
-function FormInputField({ type, placeholder, id, name, value, handleChange }) {
+function FormInputField({
+  type,
+  placeholder,
+  id,
+  name,
+  value,
+  handleChange,
+  maxLength,
+}) {
   return (
     <input
       type={type}
@@ -206,6 +216,7 @@ function FormInputField({ type, placeholder, id, name, value, handleChange }) {
       name={name}
       value={value}
       onChange={handleChange}
+      maxLength={maxLength}
       required
     />
   );
