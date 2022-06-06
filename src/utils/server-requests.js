@@ -71,7 +71,6 @@ export const login = async (
     navigate(from);
     setToastMessage({ type: "success", message: "Login Successful!" });
   } catch (error) {
-    console.log(error.response);
     if (error.response?.status == 404) {
       setToastMessage({
         type: "info",
@@ -160,6 +159,10 @@ export const toggleWishList = async (
       setIsUpdating(false);
       setToastMessage({ type: "info", message: "Item added to wishlist" });
     } catch (error) {
+      setToastMessage({
+        type: "error",
+        message: "Action failed. Please try again later.",
+      });
       throw new Error("can not be added to wishlist");
     }
   } else {
@@ -204,6 +207,10 @@ export const removeItemFromWishlist = async (
     setToastMessage({ type: "info", message: "Item removed from wishlist" });
   } catch (error) {
     setIsUpdating(false);
+    setToastMessage({
+      type: "error",
+      message: "Action failed. Please try again later.",
+    });
     throw new Error("can not be deleted from wishlist");
   }
 };
@@ -243,6 +250,10 @@ export const addItemToCart = async (
     setIsUpdating(false);
   } catch (error) {
     setIsUpdating(false);
+    setToastMessage({
+      type: "error",
+      message: "Action failed. Please try again later.",
+    });
     throw new Error("failed! try again");
   }
 };
@@ -276,6 +287,10 @@ export const removeItemFromCart = async (
 
     setToastMessage({ type: "info", message: "Item is removed from cart." });
   } catch (error) {
+    setToastMessage({
+      type: "error",
+      message: "Action failed. Please try again later.",
+    });
     throw new Error("Item can not be removed");
   }
 };
@@ -297,6 +312,10 @@ export const saveToWishlist = async (
 
     setToastMessage({ type: "info", message: "Item is saved to wishlist" });
   } catch (error) {
+    setToastMessage({
+      type: "error",
+      message: "Action failed. Please try again later.",
+    });
     throw new Error("Item can not be saved to wishlist");
   }
 };
@@ -347,6 +366,10 @@ export const updateProductQuantity = async (
     });
   } catch (error) {
     setIsUpdating(false);
+    setToastMessage({
+      type: "error",
+      message: "Action failed. Please try again later.",
+    });
   }
 };
 
@@ -386,6 +409,10 @@ export const moveToCart = async (
 
     navigate("/cart");
   } catch (error) {
+    setToastMessage({
+      type: "error",
+      message: "Action failed. Please try again later.",
+    });
     throw new Error("Can not be added to cart");
   }
 };
@@ -456,6 +483,6 @@ export const emptyCart = async (token, dataDispatch) => {
     data = { ...data, cart: res.data.cart };
     localStorage.setItem("data", JSON.stringify(data));
   } catch (error) {
-    console.log(error, error.response);
+    throw new Error("Can not empty cart");
   }
 };
