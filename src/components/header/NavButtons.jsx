@@ -24,7 +24,7 @@ export function NavButtons() {
   return (
     <div>
       <ul className="hy-navbar-links">
-        <li className="mr-1 hide-small">
+        <li className=" hide-small">
           {token ? (
             <span style={{ fontSize: "1rem" }}>Hi, {userName} </span>
           ) : location.pathname === "/login" ? (

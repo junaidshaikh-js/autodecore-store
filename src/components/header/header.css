@@ -68,6 +68,10 @@ i[title="search"] {
   z-index: 1;
 }
 
+.hy-search-box {
+  width: 100%;
+}
+
 @media screen and (min-width: 769px) {
   .side-menu {
     display: none;
@@ -78,8 +82,18 @@ i[title="search"] {
   }
 
   .hy-search-box {
+    left: 150px;
+    top: 50%;
+    width: 35%;
+    transform: translateY(-50%);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hy-search-box {
     left: 200px;
     top: 50%;
+    width: 48%;
     transform: translateY(-50%);
   }
 }
