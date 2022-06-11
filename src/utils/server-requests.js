@@ -357,13 +357,6 @@ export const updateProductQuantity = async (
     localStorage.setItem("data", JSON.stringify(data));
 
     setIsUpdating(false);
-
-    setToastMessage({
-      type: "info",
-      message: `Product count update to  ${
-        type == "increment" ? product.qty + 1 : product.qty - 1
-      }`,
-    });
   } catch (error) {
     setIsUpdating(false);
     setToastMessage({
@@ -402,9 +395,12 @@ export const moveToCart = async (
           setIsUpdating,
           state,
           token,
-          "increment"
+          "increment",
+          setToastMessage
         );
       }
+
+      navigate("/cart");
     }
 
     navigate("/cart");
