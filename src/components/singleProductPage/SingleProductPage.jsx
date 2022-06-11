@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { BsCalendar2CheckFill, BsCalendarXFill } from "react-icons/bs";
 
 import { useAuth, useData, useToast } from "../../context";
-import { Loader } from "../loader";
+import { Loader } from "../loader/loader";
 import { Carousel } from "../carousel/Carousel";
 import { ProductCardPrice } from "../productListing/ProductCardPrice";
 import { AddToCartBtn } from "../productListing/AddToCartBtn";

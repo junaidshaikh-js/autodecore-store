@@ -4,10 +4,10 @@ import { useAuth, useToast } from "../../context";
 import { BtnComplementary, BtnPrimary } from "../buttons";
 import { login } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import { Loader } from "../loader";
+import { Loader } from "../loader/loader";
 import { getValidated } from "./utils/getValidated";
 import "./authentication.css";
-import { ErrorMessage } from "./ErrorMessage";
+import { ErrorMessage } from "./sub-components/ErrorMessage";
 
 export function Login() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

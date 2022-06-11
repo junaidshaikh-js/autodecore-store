@@ -1,4 +1,5 @@
-import { ProductHeader, ProductCardPrice } from "../../productListing";
+import { ProductHeader } from "../../productListing/ProductHeader";
+import { ProductCardPrice } from "../../productListing/ProductCardPrice";
 import { Link } from "react-router-dom";
 
 export function CartProductInfo({

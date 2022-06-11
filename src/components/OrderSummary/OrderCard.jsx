@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-import { ProductHeader, ProductCardPrice } from "../productListing";
+import { ProductHeader } from "../productListing/ProductHeader";
+import { ProductCardPrice } from "../productListing/ProductCardPrice";
 
 export const OrderCard = ({ product }) => {
   return (
