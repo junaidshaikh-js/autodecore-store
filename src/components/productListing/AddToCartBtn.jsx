@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import { useAuth, useData, useToast } from "../../context";
 import { isInList, addItemToCart } from "../../utils";
-import { InlineLoader } from "../loader";
+import { InlineLoader } from "../loader/InlineLoader";
 
 export function AddToCartBtn({ product }) {
   const [isAddingToCart, setIsAddingToCart] = useState(false);

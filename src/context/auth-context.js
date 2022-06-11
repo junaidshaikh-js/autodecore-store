@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
-import { authReducer } from "./auth-reducer";
+import { authReducer } from "./reducers/auth-reducer";
 
 const initialAuthState = {
   userName: localStorage.getItem("userName"),

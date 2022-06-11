@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BtnComplementary } from "../buttons";
-import { ErrorMessage } from "./ErrorMessage";
-import { ShowPasswordVisibility } from "./ShowPasswordVisibility";
+import { ErrorMessage } from "./sub-components/ErrorMessage";
+import { ShowPasswordVisibility } from "./sub-components/ShowPasswordVisibility";
 import { handleSignupSubmit } from "./utils/handle-signup-submit";
-import { InlineLoader } from "../loader";
+import { InlineLoader } from "../loader/InlineLoader";
 import { useAuth, useToast } from "../../context";
 
 export function Signup() {
