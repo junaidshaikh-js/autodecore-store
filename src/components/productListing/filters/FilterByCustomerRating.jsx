@@ -1,9 +1,8 @@
 export function FilterByCustomerRating({ dispatch, filters }) {
   const ratingFilters = [
-    "four and above",
-    "three and above",
-    "two and above",
-    "one and above",
+    { title: "four and above", rating: 4 },
+    { title: "three and above", rating: 3 },
+    { title: "two and above", rating: 2 },
   ];
 
   return (
@@ -23,12 +22,12 @@ export function FilterByCustomerRating({ dispatch, filters }) {
                   onChange={() => {
                     dispatch({
                       type: "SORT_BY_RATING",
-                      payload: ratingFilters.length - index,
+                      payload: ratingFilter.rating,
                     });
                   }}
-                  checked={filters.rating === ratingFilters.length - index}
+                  checked={filters.rating === ratingFilter.rating}
                 />
-                {ratingFilters.length - index}{" "}
+                {ratingFilter.rating}{" "}
                 <i className="fas fa-star px-sm" title="star"></i> & above
               </label>
             </li>
