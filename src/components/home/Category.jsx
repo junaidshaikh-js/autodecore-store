@@ -4,7 +4,7 @@ import { useData } from "../../context";
 export function Category({ categoryName, sources }) {
   const { dispatch } = useData();
   return (
-    <div className="bg-white my-1">
+    <div className="bg-white mb-1">
       <section className="category-section  txt-center p-sm pb-1 ">
         <header className="py-1">
           <h2 className="h3">{categoryName}</h2>

@@ -12,7 +12,7 @@ export function Footer() {
         pathname == "/products" && "margin-bottom"
       }`}
     >
-      <footer className="py-2">
+      <footer className="py-1">
         <p>Made with ❤️ by Junaid</p>
         <div className="social-links">
           <a href="https://twitter.com/junaidshaikh_js" className="mr-sm">
