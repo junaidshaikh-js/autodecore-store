@@ -23,7 +23,7 @@ export function NavButtons() {
 
   return (
     <div>
-      <ul className="hy-navbar-links">
+      <ul className="hy-navbar-links flex align-center">
         <li className=" hide-small">
           {token ? (
             <span style={{ fontSize: "1rem" }}>Hi, {userName} </span>
@@ -33,7 +33,7 @@ export function NavButtons() {
             </Link>
           ) : (
             <Link to="/login">
-              <BtnSecondary>login</BtnSecondary>
+              <BtnSecondary cnames="mr-sm">login</BtnSecondary>
             </Link>
           )}
         </li>
