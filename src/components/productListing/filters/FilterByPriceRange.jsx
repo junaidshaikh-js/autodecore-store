@@ -13,7 +13,7 @@ export function FilterByPriceRange({ dispatch, filters }) {
       <input
         type="range"
         className="w-100"
-        min="100"
+        min="200"
         max="2000"
         step="100"
         list="tickmarks"
@@ -35,7 +35,7 @@ export function FilterByPriceRange({ dispatch, filters }) {
       </datalist>
 
       <div className="txt-bold">
-        <p>INR: 0 - {filters.price}</p>
+        <p>INR: 100 - {filters.price}</p>
       </div>
     </section>
   );
