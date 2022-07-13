@@ -12,7 +12,7 @@ export function FilterByCustomerRating({ dispatch, filters }) {
       <ul className="pl-1">
         {ratingFilters.map((ratingFilter, index) => {
           return (
-            <li key={ratingFilter}>
+            <li key={ratingFilter.rating}>
               <label className="flex align-center">
                 <input
                   type="radio"
