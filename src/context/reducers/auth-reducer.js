@@ -1,30 +1,28 @@
-export function authReducer(state, { type, payload }) {
+import produce from "immer";
+
+export const authReducer = produce((state, { type, payload }) => {
   switch (type) {
     case "LOGIN":
-      return {
-        ...state,
-        token: payload.encodedToken,
-        userName: payload.foundUser?.firstName,
-        addresses: payload.foundUser?.addresses,
-      };
+      state.token = payload.encodedToken;
+      state.userName = payload.foundUser?.firstName;
+      state.addresses = payload.foundUser?.addresses;
+      break;
+
     case "LOG_OUT":
-      return {
-        ...state,
-        token: payload.token,
-        userName: payload.userName,
-      };
+      state.token = payload.token;
+      state.userName = payload.userName;
+      break;
+
     case "ADD_ADDRESS":
-      return {
-        ...state,
-        addresses: [...state.addresses, payload],
-      };
+      state.addresses.push(payload);
+      break;
+
     case "DELETE_ADDRESS":
     case "UPDATE_ADDRESS":
-      return {
-        ...state,
-        addresses: payload,
-      };
+      state.addresses = payload;
+      break;
+
     default:
       throw new Error("Unhandled type in auth reducer");
   }
-}
+});
