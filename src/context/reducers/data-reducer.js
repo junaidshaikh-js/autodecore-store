@@ -1,3 +1,5 @@
+import produce from "immer";
+
 const filterInitialState = {
   sort: "",
   inStock: false,
@@ -6,80 +8,72 @@ const filterInitialState = {
   price: 2000,
 };
 
-export function dataReducer(state, { type, payload }) {
+export const dataReducer = produce((state, { type, payload }) => {
   switch (type) {
     case "SET_PRODUCTS":
-      return { ...state, products: payload };
+      state.products = payload;
+      break;
+
     case "SET_CATEGORIES":
-      return { ...state, categories: payload };
+      state.categories = payload;
+      break;
+
     case "SET_CART":
-      return { ...state, productsInCart: payload };
+      state.productsInCart = payload;
+      break;
+
     case "CLEAR_FILTERS":
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          ...filterInitialState,
-        },
-      };
+      state.filters = filterInitialState;
+      break;
+
     case "INCLUDE_OUT_OF_STOCK":
-      return { ...state, filters: { ...state.filters, inStock: payload } };
+      state.filters.inStock = payload;
+      break;
+
     case "FILTER_BY_CATEGORY":
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          categories: payload.isChecked
-            ? [...state.filters.categories, payload.value]
-            : state.filters.categories.filter(
-                (category) => category !== payload.value
-              ),
-        },
-      };
+      if (payload.isChecked) {
+        state.filters.categories.push(payload.value);
+      } else {
+        state.filters.categories = state.filters.categories.filter(
+          (category) => category !== payload.value
+        );
+      }
+      break;
+
     case "FILTER_BY_PRICE_RANGE":
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          price: payload,
-        },
-      };
+      state.filters.price = payload;
+      break;
+
     case "SORT_BY_RATING":
-      return {
-        ...state,
-        filters: { ...state.filters, rating: payload },
-      };
+      state.filters.rating = payload;
+      break;
+
     case "SORT_BY_PRICE":
-      return {
-        ...state,
-        filters: { ...state.filters, sort: payload },
-      };
+      state.filters.sort = payload;
+      break;
+
     case "ADD_TO_WISHLIST":
     case "REMOVE_ITEM_FROM_WISHLIST":
     case "SET_WISHLIST":
-      return {
-        ...state,
-        productsInWishList: payload,
-      };
+      state.productsInWishList = payload;
+      break;
+
     case "REMOVE_ITEM_FROM_CART":
     case "UPDATE_CART_QUANTITY":
     case "EMPTY_CART":
-      return {
-        ...state,
-        productsInCart: payload,
-      };
+      state.productsInCart = payload;
+      break;
+
     case "LOG_OUT":
-      return {
-        ...state,
-        productsInCart: [],
-        productsInWishList: [],
-      };
+      state.productsInCart = [];
+      state.productsInWishList = [];
+      break;
+
     case "SET_ORDERS":
-      return {
-        ...state,
-        orders: [...state.orders, payload],
-      };
+      state.orders.push(payload);
+      break;
+
     default:
       throw new Error("Unhandled action type");
   }
-}
+});
